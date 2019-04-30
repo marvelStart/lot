@@ -35,7 +35,7 @@ export default {
 
 <style lang="scss" scoped>
 .lot-tabber{
-  height: 100px;
-  font-size: 36px !important;
+  height: 50px;
+  font-size: 18px !important;
 }
 </style>

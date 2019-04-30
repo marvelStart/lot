@@ -68,18 +68,18 @@ export default {
 .edit-body{
   height: 100%;
   .edit-form{
-    border-radius: 8px;
-    margin: 20px;
-    padding: 40px 0;
+    border-radius: 4px;
+    margin: 10px;
+    padding: 20px 0;
     background-color: white;
     .row-item{
-      margin: 0 30px;
-      height: 110px;
-      line-height: 110px;
+      margin: 0 15px;
+      height: 55px;
+      line-height: 55px;
       /*border-bottom: 2px solid #DCDCDC;*/
       img{
-        width: 100px;
-        height: 100px;
+        width: 50px;
+        height: 50px;
         vertical-align: middle;
       }
       .left-label{
@@ -90,17 +90,17 @@ export default {
         input{
           text-align: right;
           border: none;
-          height: 100px;
-          line-height: 100px;
+          height: 50px;
+          line-height: 50px;
         }
       }
     }
     button{
-      width: 650px;
-      margin: 60px 30px;
-      height: 80px;
-      line-height: 80px;
-      border-radius: 8px;
+      width: 325px;
+      margin: 30px 15px;
+      height: 40px;
+      line-height: 40px;
+      border-radius: 4px;
     }
   }
 }

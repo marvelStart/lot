@@ -106,37 +106,37 @@ export default {
 
 <style lang="scss" scoped>
 .lot-user{
-  padding-bottom: 100px;
+  padding-bottom: 50px;
   box-sizing: border-box;
-  padding-bottom: 100px;
+  padding-bottom: 50px;
   box-sizing: border-box;
   .user-content{
     background-color: white;
-    height: 260px;
-    padding: 20px;
+    height: 130px;
+    padding: 10px;
     box-sizing: border-box;
     img{
       border-radius: 50%;
-      width: 200px;
-      height: 200px;
+      width: 100px;
+      height: 100px;
       vertical-align: middle;
     }
     .user-icon{
       text-align: center;
-      line-height: 220px;
+      line-height: 110px;
     }
     .user-info{
       i{
         vertical-align: middle;
       }
       span{
-        margin-left: 20px;
+        margin-left: 10px;
         vertical-align: middle;
       }
       p{
-        height: 40px;
-        line-height: 40px;
-        margin-bottom: 10px;
+        height: 20px;
+        line-height: 20px;
+        margin-bottom: 5px;
         color: #222222;
         a{
           color: #222222;
@@ -146,35 +146,35 @@ export default {
   }
   .user-imgs{
     background-color: white;
-    margin: 20px;
-    padding: 20px;
-    border-radius: 8px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 4px;
     img{
       width: 100%;
       height: 100%;
       vertical-align: middle;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
     .up-user-photograph{
-      width: 160px;
-      height: 160px;
-      line-height: 160px;
-      border: 2px dashed #d8d8d8;
+      width: 80px;
+      height: 80px;
+      line-height: 80px;
+      border: 1px dashed #d8d8d8;
       text-align: center;
       i{
-        font-size: 36px;
+        font-size: 18px;
       }
     }
   }
   .wallet-content{
-    margin: 0 30px;
+    margin: 0 15px;
     background-color: white;
-    border-radius: 8px;
+    border-radius: 4px;
     .wallet-item{
-      padding-left: 20px;
-      height: 100px;
-      line-height: 100px;
-      border-bottom: 2px solid #DCDCDC;
+      padding-left: 10px;
+      height: 50px;
+      line-height: 50px;
+      border-bottom: 1px solid #DCDCDC;
       &:last-child{
          border-bottom: none;
       }
@@ -191,27 +191,27 @@ export default {
         text-align: right;
         span{
           color: #222222;
-          margin-right: 10px;
+          margin-right: 5px;
         }
       }
     }
     h4{
       margin: 0px;
-      height: 80px;
-      line-height: 80px;
-      padding-left: 20px;
+      height: 40px;
+      line-height: 40px;
+      padding-left: 10px;
     }
   }
   .user-top-up{
     background-color: white;
-    margin: 20px;
-    border-radius: 8px;
+    margin: 10px;
+    border-radius: 4px;
     section{
-      height: 100px;
-      line-height: 100px;
-      padding-left: 30px;
+      height: 50px;
+      line-height: 50px;
+      padding-left: 15px;
       box-sizing: border-box;
-      border-bottom: 2px solid #DCDCDC;
+      border-bottom: 1px solid #DCDCDC;
       &:last-child{
         border-bottom: none;
       }
@@ -221,9 +221,9 @@ export default {
     }
     h4{
       margin: 0px;
-      height: 80px;
-      line-height: 80px;
-      padding-left: 20px;
+      height: 40px;
+      line-height: 40px;
+      padding-left: 10px;
     }
   }
 }

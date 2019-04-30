@@ -36,13 +36,13 @@ export default {
 
 <style lang="scss" scoped>
 .lot-header{
-  height: 80px;
-  line-height: 80px;
-  font-size: 36px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
   div {
-    font-size: 28px;
+    font-size: 14px;
     i{
-      font-size: 28px;
+      font-size: 14px;
     }
   }
 }

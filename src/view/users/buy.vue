@@ -98,7 +98,75 @@
     <article class="other-content" v-if="type === 'other'">
       <!-- 购买礼物 -->
       <lotHeader></lotHeader>
+      <section class="user-content">
+        <van-row>
+          <van-col :span="12" class="user-content-left">
+            <img src="/assets/pexels-photo-1362479.jpg" alt="">
+          </van-col>
+          <van-col :span="12" class="user-content-right">
+            <p>王独秀</p>
+            <p>富1</p>
+            <p>金币：9999</p>
+          </van-col>
+        </van-row>
+      </section>
+      <article class="gift-body">
+        <section>
+          <van-row class="gift-content" gutter="10">
+            <van-col :span="6" class="gift-item">
+              <img src="/assets/pexels-photo-1362479.jpg" @click="buyGift({uid: 10000})" alt="">
+              <p>999钻戒</p>
+            </van-col>
+            <van-col :span="6" class="gift-item">
+              <img src="/assets/pexels-photo-1362479.jpg" alt="">
+              <p>999钻戒</p>
+            </van-col>
+            <van-col :span="6" class="gift-item">
+              <img src="/assets/pexels-photo-1362479.jpg" alt="">
+              <p>999钻戒</p>
+            </van-col>
+            <van-col :span="6" class="gift-item">
+              <img src="/assets/pexels-photo-1362479.jpg" alt="">
+              <p>999钻戒</p>
+            </van-col>
+            <van-col :span="6" class="gift-item">
+              <img src="/assets/pexels-photo-1362479.jpg" alt="">
+              <p>999钻戒</p>
+            </van-col>
+            <van-col :span="6" class="gift-item">
+              <img src="/assets/pexels-photo-1362479.jpg" alt="">
+              <p>999钻戒</p>
+            </van-col>
+            <van-col :span="6" class="gift-item">
+              <img src="/assets/pexels-photo-1362479.jpg" alt="">
+              <p>999钻戒</p>
+            </van-col>
+            <van-col :span="6" class="gift-item">
+              <img src="/assets/pexels-photo-1362479.jpg" alt="">
+              <p>999钻戒</p>
+            </van-col>
+            <van-col :span="6" class="gift-item">
+              <img src="/assets/pexels-photo-1362479.jpg" alt="">
+              <p>999钻戒</p>
+            </van-col>
+          </van-row>
+        </section>
+      </article>
     </article>
+    <van-dialog
+      v-model="show"
+      title="标题"
+      show-cancel-button
+      :confirm="confirm"
+      :cancel="cancel"
+    >
+      <van-stepper
+        v-model="tempGift.count"
+        integer
+        :min="1"
+        :max="9999"
+      />
+    </van-dialog>
   </article>
 </template>
 
@@ -109,7 +177,12 @@ export default {
   components: { lotHeader },
   data () {
     return {
-      type: ''
+      type: '',
+      show: false,
+      tempGift: {
+        uId: null,
+        count: 1
+      }
     }
   },
   created () {
@@ -126,11 +199,23 @@ export default {
           this.$store.commit('LOT_COMMON_SET_HEADER_TITLE', '金币充值')
           break
         case 'other':
-          this.$store.commit('LOT_COMMON_SET_HEADER_TITLE', '其他充值')
+          this.$store.commit('LOT_COMMON_SET_HEADER_TITLE', '购买礼物')
           break
         default:
           break
       }
+    },
+    buyGift (item) {
+      this.show = true
+    },
+    cancel () {
+      this.tempGift = {
+        uId: null,
+        count: 1
+      }
+    },
+    confirm () {
+
     }
   }
 }
@@ -146,12 +231,12 @@ export default {
       background: linear-gradient(to right, rgba(252, 147, 30, 1), rgba(254, 191, 88, 0.5));
       &-left{
         box-sizing: border-box;
-        padding-left: 40px;
-        height: 300px;
-        line-height: 300px;
+        padding-left: 20px;
+        height: 150px;
+        line-height: 150px;
         img{
-          width: 200px;
-          height: 200px;
+          width: 100px;
+          height: 100px;
           vertical-align: middle;
           border-radius: 50%;
         }
@@ -163,38 +248,38 @@ export default {
       }
       &-right{
         box-sizing: border-box;
-        padding-top: 90px;
-        height: 300px;
+        padding-top: 45px;
+        height: 150px;
         color: white;
         p{
           text-align: right;
-          padding-right: 20px;
+          padding-right: 10px;
         }
       }
     }
     .top-up-item{
-      margin-top: 40px;
-      padding: 0px 40px;
+      margin-top: 20px;
+      padding: 0px 20px;
       label{
         color: #222222;
-        font-size: 28px;
+        font-size: 14px;
         font-weight: bold;
       }
       .row-item{
-        border: 2px solid #dcdcdc;
-        border-radius: 8px;
-        height: 120px;
-        margin-top: 40px;
+        border: 1px solid #dcdcdc;
+        border-radius: 4px;
+        height: 60px;
+        margin-top: 20px;
         &>div:nth-child(1){
-          font-size: 28px;
+          font-size: 14px;
           box-sizing: border-box;
-          padding: 20px 40px;
+          padding: 10px 20px;
           &>section:nth-child(2){
             color: #666666;
           }
         }
         &>div:nth-child(2){
-          line-height: 120px;
+          line-height: 60px;
           text-align: center;
         }
         &.selected{
@@ -203,24 +288,47 @@ export default {
       }
     }
     .buy-type{
-      margin-top: 40px;
-      padding: 0px 40px;
+      margin-top: 20px;
+      padding: 0px 20px;
       label{
         color: #222222;
-        font-size: 28px;
+        font-size: 14px;
         font-weight: bold;
       }
       .buy-types{
-        margin-top: 20px;
+        margin-top: 10px;
         img{
-          width: 100px;
-          height: 100px;
+          width: 50px;
+          height: 50px;
           vertical-align: middle;
-          border-radius: 16px;
-          margin-right: 20px;
+          border-radius: 8px;
+          margin-right: 10px;
+        }
+      }
+    }
+    .gift-content{
+      box-sizing: border-box;
+      padding: 0 15px;
+      margin-top: 10px;
+      .gift-item{
+        margin-bottom: 10px;
+        img{
+          width: 80px;
+          height: 80px;
+          vertical-align: middle;
+        }
+        p{
+          margin: 0;
+          text-align: center;
         }
       }
     }
   }
+}
+.van-stepper{
+  height: 44px;
+  line-height: 44px;
+  text-align: center;
+  margin: 20px 0;
 }
 </style>

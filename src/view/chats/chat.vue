@@ -7,7 +7,7 @@
           <van-col :span="4" class="chat-item-icon"><img src="/assets/pexels-photo-1362479.jpg" alt=""></van-col>
           <van-col :span="14" :offset="2" class="chat-item-content">背井离乡</van-col>
           <van-col :span="4" class="chat-item-operation">
-            <van-icon name="chat-o"></van-icon>
+            <van-icon name="chat-o" @click="newWindow('CDSSDQDS6548QDSDF94A')"></van-icon>
           </van-col>
         </van-row>
       </section>
@@ -16,7 +16,7 @@
           <van-col :span="4" class="chat-item-icon"><img src="/assets/pexels-photo-1362479.jpg" alt=""></van-col>
           <van-col :span="14" :offset="2" class="chat-item-content">背井离乡</van-col>
           <van-col :span="4" class="chat-item-operation">
-            <van-icon name="chat-o"></van-icon>
+            <van-icon name="chat-o" @click="newWindow('CDSSDQDS6548QDSDF94A')"></van-icon>
           </van-col>
         </van-row>
       </section>
@@ -25,7 +25,7 @@
           <van-col :span="4" class="chat-item-icon"><img src="/assets/pexels-photo-1362479.jpg" alt=""></van-col>
           <van-col :span="14" :offset="2" class="chat-item-content">背井离乡</van-col>
           <van-col :span="4" class="chat-item-operation">
-            <van-icon name="chat-o"></van-icon>
+            <van-icon name="chat-o" @click="newWindow('CDSSDQDS6548QDSDF94A')"></van-icon>
           </van-col>
         </van-row>
       </section>
@@ -34,7 +34,7 @@
           <van-col :span="4" class="chat-item-icon"><img src="/assets/pexels-photo-1362479.jpg" alt=""></van-col>
           <van-col :span="14" :offset="2" class="chat-item-content">背井离乡</van-col>
           <van-col :span="4" class="chat-item-operation">
-            <van-icon name="chat-o"></van-icon>
+            <van-icon name="chat-o" @click="newWindow('CDSSDQDS6548QDSDF94A')"></van-icon>
           </van-col>
         </van-row>
       </section>
@@ -43,7 +43,133 @@
           <van-col :span="4" class="chat-item-icon"><img src="/assets/pexels-photo-1362479.jpg" alt=""></van-col>
           <van-col :span="14" :offset="2" class="chat-item-content">背井离乡</van-col>
           <van-col :span="4" class="chat-item-operation">
-            <van-icon name="chat-o"></van-icon>
+            <van-icon name="chat-o" @click="newWindow('CDSSDQDS6548QDSDF94A')"></van-icon>
+          </van-col>
+        </van-row>
+      </section>
+      <section class="chat-item">
+        <van-row>
+          <van-col :span="4" class="chat-item-icon"><img src="/assets/pexels-photo-1362479.jpg" alt=""></van-col>
+          <van-col :span="14" :offset="2" class="chat-item-content">背井离乡</van-col>
+          <van-col :span="4" class="chat-item-operation">
+            <van-icon name="chat-o" @click="newWindow('CDSSDQDS6548QDSDF94A')"></van-icon>
+          </van-col>
+        </van-row>
+      </section>
+      <section class="chat-item">
+        <van-row>
+          <van-col :span="4" class="chat-item-icon"><img src="/assets/pexels-photo-1362479.jpg" alt=""></van-col>
+          <van-col :span="14" :offset="2" class="chat-item-content">背井离乡</van-col>
+          <van-col :span="4" class="chat-item-operation">
+            <van-icon name="chat-o" @click="newWindow('CDSSDQDS6548QDSDF94A')"></van-icon>
+          </van-col>
+        </van-row>
+      </section>
+      <section class="chat-item">
+        <van-row>
+          <van-col :span="4" class="chat-item-icon"><img src="/assets/pexels-photo-1362479.jpg" alt=""></van-col>
+          <van-col :span="14" :offset="2" class="chat-item-content">背井离乡</van-col>
+          <van-col :span="4" class="chat-item-operation">
+            <van-icon name="chat-o" @click="newWindow('CDSSDQDS6548QDSDF94A')"></van-icon>
+          </van-col>
+        </van-row>
+      </section>
+      <section class="chat-item">
+        <van-row>
+          <van-col :span="4" class="chat-item-icon"><img src="/assets/pexels-photo-1362479.jpg" alt=""></van-col>
+          <van-col :span="14" :offset="2" class="chat-item-content">背井离乡</van-col>
+          <van-col :span="4" class="chat-item-operation">
+            <van-icon name="chat-o" @click="newWindow('CDSSDQDS6548QDSDF94A')"></van-icon>
+          </van-col>
+        </van-row>
+      </section>
+      <section class="chat-item">
+        <van-row>
+          <van-col :span="4" class="chat-item-icon"><img src="/assets/pexels-photo-1362479.jpg" alt=""></van-col>
+          <van-col :span="14" :offset="2" class="chat-item-content">背井离乡</van-col>
+          <van-col :span="4" class="chat-item-operation">
+            <van-icon name="chat-o" @click="newWindow('CDSSDQDS6548QDSDF94A')"></van-icon>
+          </van-col>
+        </van-row>
+      </section>
+      <section class="chat-item">
+        <van-row>
+          <van-col :span="4" class="chat-item-icon"><img src="/assets/pexels-photo-1362479.jpg" alt=""></van-col>
+          <van-col :span="14" :offset="2" class="chat-item-content">背井离乡</van-col>
+          <van-col :span="4" class="chat-item-operation">
+            <van-icon name="chat-o" @click="newWindow('CDSSDQDS6548QDSDF94A')"></van-icon>
+          </van-col>
+        </van-row>
+      </section>
+      <section class="chat-item">
+        <van-row>
+          <van-col :span="4" class="chat-item-icon"><img src="/assets/pexels-photo-1362479.jpg" alt=""></van-col>
+          <van-col :span="14" :offset="2" class="chat-item-content">背井离乡</van-col>
+          <van-col :span="4" class="chat-item-operation">
+            <van-icon name="chat-o" @click="newWindow('CDSSDQDS6548QDSDF94A')"></van-icon>
+          </van-col>
+        </van-row>
+      </section>
+      <section class="chat-item">
+        <van-row>
+          <van-col :span="4" class="chat-item-icon"><img src="/assets/pexels-photo-1362479.jpg" alt=""></van-col>
+          <van-col :span="14" :offset="2" class="chat-item-content">背井离乡</van-col>
+          <van-col :span="4" class="chat-item-operation">
+            <van-icon name="chat-o" @click="newWindow('CDSSDQDS6548QDSDF94A')"></van-icon>
+          </van-col>
+        </van-row>
+      </section>
+      <section class="chat-item">
+        <van-row>
+          <van-col :span="4" class="chat-item-icon"><img src="/assets/pexels-photo-1362479.jpg" alt=""></van-col>
+          <van-col :span="14" :offset="2" class="chat-item-content">背井离乡</van-col>
+          <van-col :span="4" class="chat-item-operation">
+            <van-icon name="chat-o" @click="newWindow('CDSSDQDS6548QDSDF94A')"></van-icon>
+          </van-col>
+        </van-row>
+      </section>
+      <section class="chat-item">
+        <van-row>
+          <van-col :span="4" class="chat-item-icon"><img src="/assets/pexels-photo-1362479.jpg" alt=""></van-col>
+          <van-col :span="14" :offset="2" class="chat-item-content">背井离乡</van-col>
+          <van-col :span="4" class="chat-item-operation">
+            <van-icon name="chat-o" @click="newWindow('CDSSDQDS6548QDSDF94A')"></van-icon>
+          </van-col>
+        </van-row>
+      </section>
+      <section class="chat-item">
+        <van-row>
+          <van-col :span="4" class="chat-item-icon"><img src="/assets/pexels-photo-1362479.jpg" alt=""></van-col>
+          <van-col :span="14" :offset="2" class="chat-item-content">背井离乡</van-col>
+          <van-col :span="4" class="chat-item-operation">
+            <van-icon name="chat-o" @click="newWindow('CDSSDQDS6548QDSDF94A')"></van-icon>
+          </van-col>
+        </van-row>
+      </section>
+      <section class="chat-item">
+        <van-row>
+          <van-col :span="4" class="chat-item-icon"><img src="/assets/pexels-photo-1362479.jpg" alt=""></van-col>
+          <van-col :span="14" :offset="2" class="chat-item-content">背井离乡</van-col>
+          <van-col :span="4" class="chat-item-operation">
+            <van-icon name="chat-o" @click="newWindow('CDSSDQDS6548QDSDF94A')"></van-icon>
+          </van-col>
+        </van-row>
+      </section>
+      <section class="chat-item">
+        <van-row>
+          <van-col :span="4" class="chat-item-icon"><img src="/assets/pexels-photo-1362479.jpg" alt=""></van-col>
+          <van-col :span="14" :offset="2" class="chat-item-content">背井离乡</van-col>
+          <van-col :span="4" class="chat-item-operation">
+            <van-icon name="chat-o" @click="newWindow('CDSSDQDS6548QDSDF94A')"></van-icon>
+          </van-col>
+        </van-row>
+      </section>
+      <section class="chat-item">
+        <van-row>
+          <van-col :span="4" class="chat-item-icon"><img src="/assets/pexels-photo-1362479.jpg" alt=""></van-col>
+          <van-col :span="14" :offset="2" class="chat-item-content">背井离乡</van-col>
+          <van-col :span="4" class="chat-item-operation">
+            <van-icon name="chat-o" @click="newWindow('CDSSDQDS6548QDSDF94A')"></van-icon>
           </van-col>
         </van-row>
       </section>
@@ -59,6 +185,11 @@ export default {
   components: { lotFooter },
   created () {
     this.$store.commit('LOT_COMMON_SET_FOOTER_ACTIVE', 1)
+  },
+  methods: {
+    newWindow (uid) {
+      this.$router.push({path: `/window/${uid}.html`})
+    }
   }
 }
 </script>
@@ -66,23 +197,22 @@ export default {
 <style lang="scss" scoped>
 .chat-body{
   background-color: white;
-  padding-bottom: 100px;
+  padding-bottom: 50px;
   box-sizing: border-box;
-  width: 100%;
-  height: 100%;
   .chat-list{
-    margin: 0 30px;
+    box-sizing: border-box;
+    margin: 0 15px;
     .chat-item{
-      border-bottom: 2px solid #dbdbdb;
-      height: 140px;
-      line-height: 140px;
+      border-bottom: 1px solid #dbdbdb;
+      height: 70px;
+      line-height: 70px;
       &:last-child{
         border-bottom: none;
       }
       &-icon{
         img{
-          width: 100px;
-          height: 100px;
+          width: 50px;
+          height: 50px;
           vertical-align: middle;
         }
       }
@@ -92,8 +222,8 @@ export default {
       &-operation{
         text-align: center;
         i{
-          line-height: 100px;
-          font-size: 48px;
+          line-height: 50px;
+          font-size: 24px;
         }
       }
     }

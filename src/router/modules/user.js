@@ -1,6 +1,6 @@
 import lotUser from '@/view/users/user'
-import editInfo from '@/view/users/editInfo'
-import buy from '@/view/users/buy'
+import lotEditInfo from '@/view/users/editInfo'
+import lotBuy from '@/view/users/buy'
 
 const userRoute = [
   {
@@ -11,12 +11,12 @@ const userRoute = [
   {
     path: '/edit.html',
     name: 'lot-edit-user',
-    component: editInfo
+    component: lotEditInfo
   },
   {
     path: '/buy/:type.html',
     name: 'lot-buy',
-    component: buy
+    component: lotBuy
   }
 ]
 

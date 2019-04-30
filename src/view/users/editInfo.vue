@@ -3,46 +3,38 @@
     <lotHeader></lotHeader>
     <article class="edit-form">
       <!-- 头像 -->
-      <section>
-        <label>设置头像</label>
-        <img :src="form.icon" alt="">
-      </section>
+      <van-row class="row-item">
+        <van-col :span="6" class="left-label">设置头像</van-col>
+        <van-col :span="18" class="right-content"><img :src="form.icon" alt=""></van-col>
+      </van-row>
       <!-- 名称 -->
-      <section>
-        <label>名称</label>
-        <input type="text" v-model="form.name">
-      </section>
+      <van-row class="row-item">
+        <van-col :span="6" class="left-label">昵称</van-col>
+        <van-col :span="18" class="right-content">
+          <input type="text" v-model="form.name" placeholder="请输入昵称">
+        </van-col>
+      </van-row>
       <!-- 性别 -->
-      <section>
-        <label>性别</label>
-        <span>{{form.sex}}</span>
-      </section>
+      <van-row class="row-item">
+        <van-col :span="6" class="left-label">性别</van-col>
+        <van-col :span="18" class="right-content">{{form.sex}}</van-col>
+      </van-row>
       <!-- 手机号 -->
-      <section>
-        <label>手机号</label>
-        <input type="text" v-model="form.phone">
-      </section>
-      <!-- 年龄 -->
-      <section>
-        <label>出生日期</label>
-        <van-datetime-picker
-          v-model="form.date"
-          type="date"
-          :max-date="maxDate"
-        />
-      </section>
+      <van-row class="row-item">
+        <van-col :span="6" class="left-label">手机号</van-col>
+        <van-col :span="18" class="right-content">
+          <input type="number" v-model="form.phone" placeholder="请输入手机号">
+        </van-col>
+      </van-row>
       <!-- 身份证 -->
+      <van-row class="row-item">
+        <van-col :span="6" class="left-label">身份证</van-col>
+        <van-col :span="18" class="right-content">
+          <input type="number" v-model="form.idCard" placeholder="请输入身份证">
+        </van-col>
+      </van-row>
       <section>
-        <label>身份证</label>
-        <input type="text" v-model="form.idCard">
-      </section>
-      <!-- 介绍 -->
-      <section>
-        <label>自我介绍</label>
-        <input type="text" v-model="form.describe">
-      </section>
-      <section>
-        <van-button>提交</van-button>
+        <van-button type="info">提交</van-button>
       </section>
     </article>
   </article>
@@ -56,11 +48,10 @@ export default {
   data () {
     return {
       form: {
-        icon: 'assets/pexels-photo-1362479.jpg',
+        icon: '/assets/pexels-photo-1362479.jpg',
         name: '',
         sex: '男',
         phone: '',
-        date: '',
         idCard: '',
         describe: ''
       },
@@ -68,7 +59,7 @@ export default {
     }
   },
   created () {
-    this.$store.commit('LOT_COMMON_SET_HEADER_TITLE', '修改信息')
+    this.$store.commit('LOT_COMMON_SET_HEADER_TITLE', '编辑信息')
   }
 }
 </script>
@@ -76,6 +67,41 @@ export default {
 <style lang="scss" scoped>
 .edit-body{
   height: 100%;
-  background-color: white;
+  .edit-form{
+    border-radius: 8px;
+    margin: 20px;
+    padding: 40px 0;
+    background-color: white;
+    .row-item{
+      margin: 0 30px;
+      height: 110px;
+      line-height: 110px;
+      /*border-bottom: 2px solid #DCDCDC;*/
+      img{
+        width: 100px;
+        height: 100px;
+        vertical-align: middle;
+      }
+      .left-label{
+        color: #222222;
+      }
+      .right-content{
+        text-align: right;
+        input{
+          text-align: right;
+          border: none;
+          height: 100px;
+          line-height: 100px;
+        }
+      }
+    }
+    button{
+      width: 650px;
+      margin: 60px 30px;
+      height: 80px;
+      line-height: 80px;
+      border-radius: 8px;
+    }
+  }
 }
 </style>

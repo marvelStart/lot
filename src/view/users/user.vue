@@ -5,7 +5,7 @@
       <section class="user-content">
         <van-row>
           <van-col :span="8" class="user-icon">
-            <img src="assets/pexels-photo-1362479.jpg" alt="">
+            <img src="/assets/pexels-photo-1362479.jpg" alt="">
           </van-col>
           <van-col :span="14" :offset="2" class="user-info">
             <!-- 名称 -->
@@ -19,13 +19,13 @@
       <!-- 照片墙 -->
       <section class="user-imgs">
         <van-row gutter="5">
-          <van-col :span="6"><img src="assets/pexels-photo-1362479.jpg" @click="reView('assets/pexels-photo-1362479.jpg')" alt=""></van-col>
-          <van-col :span="6"><img src="assets/pexels-photo-1362479.jpg" @click="reView('assets/pexels-photo-1362479.jpg')" alt=""></van-col>
-          <van-col :span="6"><img src="assets/pexels-photo-1362479.jpg" @click="reView('assets/pexels-photo-1362479.jpg')" alt=""></van-col>
-          <van-col :span="6"><img src="assets/pexels-photo-1362479.jpg" @click="reView('assets/pexels-photo-1362479.jpg')" alt=""></van-col>
-          <van-col :span="6"><img src="assets/pexels-photo-1362479.jpg" @click="reView('assets/pexels-photo-1362479.jpg')" alt=""></van-col>
-          <van-col :span="6"><img src="assets/pexels-photo-1362479.jpg" @click="reView('assets/pexels-photo-1362479.jpg')" alt=""></van-col>
-          <van-col :span="6"><img src="assets/pexels-photo-1362479.jpg" @click="reView('assets/pexels-photo-1362479.jpg')" alt=""></van-col>
+          <van-col :span="6"><img src="/assets/pexels-photo-1362479.jpg" @click="reView('/assets/pexels-photo-1362479.jpg')" alt=""></van-col>
+          <van-col :span="6"><img src="/assets/pexels-photo-1362479.jpg" @click="reView('/assets/pexels-photo-1362479.jpg')" alt=""></van-col>
+          <van-col :span="6"><img src="/assets/pexels-photo-1362479.jpg" @click="reView('/assets/pexels-photo-1362479.jpg')" alt=""></van-col>
+          <van-col :span="6"><img src="/assets/pexels-photo-1362479.jpg" @click="reView('/assets/pexels-photo-1362479.jpg')" alt=""></van-col>
+          <van-col :span="6"><img src="/assets/pexels-photo-1362479.jpg" @click="reView('/assets/pexels-photo-1362479.jpg')" alt=""></van-col>
+          <van-col :span="6"><img src="/assets/pexels-photo-1362479.jpg" @click="reView('/assets/pexels-photo-1362479.jpg')" alt=""></van-col>
+          <van-col :span="6"><img src="/assets/pexels-photo-1362479.jpg" @click="reView('/assets/pexels-photo-1362479.jpg')" alt=""></van-col>
           <van-col :span="6">
             <van-uploader :after-read="callUpImg" class="up-user-photograph">
               <van-icon name="photograph" />
@@ -33,11 +33,51 @@
           </van-col>
         </van-row>
       </section>
+      <!-- 钱包 -->
+      <section class="wallet-content">
+        <h4>钱包</h4>
+        <van-row class="wallet-item">
+          <van-col :span="16">
+            <label>金币：<span>9999</span></label>
+          </van-col>
+          <van-col :span="8" class="right-item">
+            <router-link to="/buy/gold.html"><span>购买金币</span><van-icon name="arrow"></van-icon></router-link>
+          </van-col>
+        </van-row>
+        <van-row class="wallet-item">
+          <van-col :span="16">
+            <label>会员截止日期：<span>2019-12-12</span></label>
+          </van-col>
+          <van-col :span="8" class="right-item">
+            <router-link to="/buy/vip.html"><span>会员续费</span><van-icon name="arrow"></van-icon></router-link>
+          </van-col>
+        </van-row>
+        <van-row class="wallet-item">
+          <router-link to="/buy/other.html">
+          <van-col :span="23">礼物</van-col>
+          <van-col :span="1"><van-icon name="arrow"></van-icon></van-col>
+          </router-link>
+        </van-row>
+      </section>
       <!-- 充值中心 -->
       <article class="user-top-up">
         <h4>充值服务</h4>
-        <section>购买会员</section>
-        <section>购买金豆</section>
+        <section>
+          <router-link to="/buy/vip.html">
+          <van-row>
+            <van-col :span="23">升级会员</van-col>
+            <van-col :span="1"><van-icon name="arrow"></van-icon></van-col>
+          </van-row>
+          </router-link>
+        </section>
+        <section>
+          <router-link to="/buy/gold.html">
+          <van-row>
+            <van-col :span="23">购买金币</van-col>
+            <van-col :span="1"><van-icon name="arrow"></van-icon></van-col>
+          </van-row>
+          </router-link>
+        </section>
       </article>
     </article>
     <lotFooter></lotFooter>
@@ -68,7 +108,8 @@ export default {
 .lot-user{
   padding-bottom: 100px;
   box-sizing: border-box;
-  height: 100%;
+  padding-bottom: 100px;
+  box-sizing: border-box;
   .user-content{
     background-color: white;
     height: 260px;
@@ -125,6 +166,42 @@ export default {
       }
     }
   }
+  .wallet-content{
+    margin: 0 30px;
+    background-color: white;
+    border-radius: 8px;
+    .wallet-item{
+      padding-left: 20px;
+      height: 100px;
+      line-height: 100px;
+      border-bottom: 2px solid #DCDCDC;
+      &:last-child{
+         border-bottom: none;
+      }
+      span{
+        color: crimson;
+      }
+      a{
+        color: #222222;
+        i{
+          vertical-align: middle;
+        }
+      }
+      .right-item{
+        text-align: right;
+        span{
+          color: #222222;
+          margin-right: 10px;
+        }
+      }
+    }
+    h4{
+      margin: 0px;
+      height: 80px;
+      line-height: 80px;
+      padding-left: 20px;
+    }
+  }
   .user-top-up{
     background-color: white;
     margin: 20px;
@@ -137,6 +214,9 @@ export default {
       border-bottom: 2px solid #DCDCDC;
       &:last-child{
         border-bottom: none;
+      }
+      a{
+        color: #222222;
       }
     }
     h4{

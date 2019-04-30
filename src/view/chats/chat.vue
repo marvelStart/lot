@@ -4,7 +4,7 @@
     <article class="chat-list">
       <section class="chat-item">
         <van-row>
-          <van-col :span="4" class="chat-item-icon"><img src="assets/pexels-photo-1362479.jpg" alt=""></van-col>
+          <van-col :span="4" class="chat-item-icon"><img src="/assets/pexels-photo-1362479.jpg" alt=""></van-col>
           <van-col :span="14" :offset="2" class="chat-item-content">背井离乡</van-col>
           <van-col :span="4" class="chat-item-operation">
             <van-icon name="chat-o"></van-icon>
@@ -13,7 +13,7 @@
       </section>
       <section class="chat-item">
         <van-row>
-          <van-col :span="4" class="chat-item-icon"><img src="assets/pexels-photo-1362479.jpg" alt=""></van-col>
+          <van-col :span="4" class="chat-item-icon"><img src="/assets/pexels-photo-1362479.jpg" alt=""></van-col>
           <van-col :span="14" :offset="2" class="chat-item-content">背井离乡</van-col>
           <van-col :span="4" class="chat-item-operation">
             <van-icon name="chat-o"></van-icon>
@@ -22,7 +22,7 @@
       </section>
       <section class="chat-item">
         <van-row>
-          <van-col :span="4" class="chat-item-icon"><img src="assets/pexels-photo-1362479.jpg" alt=""></van-col>
+          <van-col :span="4" class="chat-item-icon"><img src="/assets/pexels-photo-1362479.jpg" alt=""></van-col>
           <van-col :span="14" :offset="2" class="chat-item-content">背井离乡</van-col>
           <van-col :span="4" class="chat-item-operation">
             <van-icon name="chat-o"></van-icon>
@@ -31,7 +31,7 @@
       </section>
       <section class="chat-item">
         <van-row>
-          <van-col :span="4" class="chat-item-icon"><img src="assets/pexels-photo-1362479.jpg" alt=""></van-col>
+          <van-col :span="4" class="chat-item-icon"><img src="/assets/pexels-photo-1362479.jpg" alt=""></van-col>
           <van-col :span="14" :offset="2" class="chat-item-content">背井离乡</van-col>
           <van-col :span="4" class="chat-item-operation">
             <van-icon name="chat-o"></van-icon>
@@ -40,7 +40,7 @@
       </section>
       <section class="chat-item">
         <van-row>
-          <van-col :span="4" class="chat-item-icon"><img src="assets/pexels-photo-1362479.jpg" alt=""></van-col>
+          <van-col :span="4" class="chat-item-icon"><img src="/assets/pexels-photo-1362479.jpg" alt=""></van-col>
           <van-col :span="14" :offset="2" class="chat-item-content">背井离乡</van-col>
           <van-col :span="4" class="chat-item-operation">
             <van-icon name="chat-o"></van-icon>

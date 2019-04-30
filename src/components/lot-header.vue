@@ -40,9 +40,9 @@ export default {
   line-height: 80px;
   font-size: 36px;
   div {
-    font-size: 36px;
+    font-size: 28px;
     i{
-      font-size: 36px;
+      font-size: 28px;
     }
   }
 }

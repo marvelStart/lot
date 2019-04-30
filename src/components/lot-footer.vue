@@ -1,6 +1,6 @@
 <template>
   <van-tabbar v-model="tempActive" class="lot-tabber" active-color="red">
-    <van-tabbar-item to="/index.html">
+    <van-tabbar-item to="/locations.html">
       <van-icon  name="location-o"  size="24px"></van-icon>
     </van-tabbar-item>
     <van-tabbar-item :dot="chatCount" to="/chat.html">

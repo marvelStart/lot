@@ -59,7 +59,7 @@
       </van-row>
     </article>
     <article class="window-operation">
-      <input type="text">
+      <input type="text" @keyup.13="send($event)">
       <van-button round type="info">发送</van-button>
       <van-icon name="add-o" @click="callGift"></van-icon>
     </article>
@@ -89,6 +89,9 @@ export default {
     },
     callGift () {
       this.giftShow = true
+    },
+    send (event) {
+      console.log('send', event)
     }
   }
 }

@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import lotIndex from '@/view/index'
 
 import userRoute from './modules/user'
 import chatRoute from './modules/chat'
+import locationRoute from './modules/locations'
 
 Vue.use(Router)
 
@@ -12,14 +12,10 @@ export default new Router({
   routes: [
     ...userRoute,
     ...chatRoute,
+    ...locationRoute,
     {
       path: '/',
-      redirect: '/index.html'
-    },
-    {
-      path: '/index.html',
-      name: 'lot-index',
-      component: lotIndex
+      redirect: '/locations.html'
     }
   ]
 })

@@ -26,6 +26,13 @@
           <input type="number" v-model="form.phone" placeholder="请输入手机号">
         </van-col>
       </van-row>
+      <!-- 手机号 -->
+      <van-row class="row-item">
+        <van-col :span="6" class="left-label">微信</van-col>
+        <van-col :span="18" class="right-content">
+          <input type="number" v-model="form.weChat" placeholder="请输入微信号">
+        </van-col>
+      </van-row>
       <!-- 身份证 -->
       <van-row class="row-item">
         <van-col :span="6" class="left-label">身份证</van-col>
@@ -52,6 +59,7 @@ export default {
         name: '',
         sex: '男',
         phone: '',
+        weChat: '',
         idCard: '',
         describe: ''
       },

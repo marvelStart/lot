@@ -2,19 +2,28 @@
   <!-- 聊天窗口 -->
   <article class="lot-window">
     <article class="window-title">
-    <section><img src="/assets/pexels-photo-1362479.jpg" alt=""></section>
+    <section><van-icon name="arrow-left" @click="closeWindow"></van-icon></section>
       <section>背井离乡</section>
-      <section><van-icon name="cross" @click="closeWindow"></van-icon></section>
     </article>
     <article class="window-body" v-if="msgHistory[key]">
-      <van-row v-for="(item, index) in msgHistory[key].historys" :key="index" :class="{'other-row': item.type === 'receive', 'self-row': item.type === 'send'}">
-        <van-col :span="15" :offset="1" v-if="item.type === 'receive'">
-          <section class="message">{{item.msg}}</section>
-        </van-col>
-        <van-col :span="15" :offset="8" v-if="item.type === 'send'">
-          <section class="message">{{item.msg}}</section>
-        </van-col>
-      </van-row>
+      <section v-for="(item, index) in msgHistory[key].historys" :key="index">
+        <van-row class="other-row" v-if="item.type === 'receive'">
+          <van-col :span="4" class="user-icon">
+            <img src="/assets/pexels-photo-1362479.jpg" alt="">
+          </van-col>
+          <van-col :span="12" class="message">
+            <section>{{item.msg}}</section>
+          </van-col>
+        </van-row>
+        <van-row v-if="item.type === 'send'" class="self-row">
+          <van-col :span="12" :offset="8" class="message">
+            <section>{{item.msg}}</section>
+          </van-col>
+          <van-col :span="4" class="user-icon">
+            <img src="/assets/pexels-photo-1362479.jpg" alt="">
+          </van-col>
+        </van-row>
+      </section>
     </article>
     <article class="window-operation">
       <input type="text" v-model="msg" @keyup.13="send">
@@ -48,8 +57,6 @@ export default {
   created () {
     this.receiveUid = this.$route.params.uid // 接收人id
     this.key = `${window.sessionStorage.getItem('sendUid')}${this.receiveUid}`
-    console.log(this.key)
-    console.log(this.msgHistory[this.key])
   },
   methods: {
     closeWindow () {
@@ -75,7 +82,7 @@ export default {
       this.websocket.send(JSON.stringify(sendMessage))
       window.setTimeout(() => {
         this.msg = ''
-      }, 50)
+      }, 100)
     }
   }
 }
@@ -100,14 +107,19 @@ export default {
       border-radius: 50%;
     }
     section{
+      vertical-align: middle;
       height: 55px;
       line-height: 55px;
       display: inline-block;
       font-size: 16px;
       &:nth-child(1){
         width: 20%;
+        font-size: 24px;
         box-sizing: border-box;
         padding-left: 10px;
+        i{
+          vertical-align: middle;
+        }
       }
       &:nth-child(2){
         width: 60%;
@@ -125,34 +137,38 @@ export default {
     box-sizing: border-box;
     padding: 55px 0 50px;
     .self-row{
-      clear: left;
-      section.message{
+      margin-bottom: 20px;
+      .message{
+        margin-top: 15px;
         text-align: right;
-        margin: 10px 0;
-        background-color: white;
-        border-radius: 10%;
-        box-sizing: border-box;
-        padding: 5px;
-        img{
-          width: 100px;
-          height: 100px;
-          vertical-align: bottom;
+        section{
+          display: inline-block;
+          padding: 5px 10px;
+          background-color: white;
+          border-radius: 8px;
         }
       }
     }
     .other-row{
-      clear: right;
-      section.message{
-        margin: 10px 0;
-        background-color: white;
-        border-radius: 10%;
-        box-sizing: border-box;
-        padding: 5px;
-        img{
-          width: 100px;
-          height: 100px;
-          vertical-align: bottom;
+      margin-bottom: 20px;
+      .message{
+        margin-top: 15px;
+        text-align: left;
+        section{
+          display: inline-block;
+          padding: 5px 10px;
+          background-color: white;
+          border-radius: 8px;
         }
+      }
+    }
+    .user-icon{
+      img{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        vertical-align: middle;
+        padding: 10px;
       }
     }
   }

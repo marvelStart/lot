@@ -5,7 +5,6 @@
     </section>
     <van-cell-group>
       <van-field
-        v-model="username"
         required
         clearable
         label="手机号"
@@ -23,7 +22,6 @@
         <van-button slot="button" size="small" type="primary">发送验证码</van-button>
       </van-field>
       <van-field
-        v-model="password"
         type="password"
         label="密码"
         placeholder="请输入密码"
@@ -35,10 +33,24 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'lot-register',
+  computed: {
+    ...mapState({
+      websocket: state => state.websocket.websocket
+    })
+  },
+  date () {
+    return {
+      username: '',
+      sms: '',
+      password: ''
+    }
+  },
   methods: {
     register () {
+      this.websocket.send(JSON.stringify({uid: 10046, msg: '测试数据'}))
       this.$router.push('/locations.html')
     }
   }

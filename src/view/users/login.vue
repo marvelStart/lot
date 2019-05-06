@@ -5,14 +5,11 @@
     </section>
     <van-cell-group>
       <van-field
-        v-model="username"
         clearable
         left-icon="manager"
         placeholder="请输入用户名"
-        @click-right-icon="$toast('question')"
       />
       <van-field
-        v-model="password"
         clearable
         left-icon="lock"
         type="password"
@@ -29,8 +26,16 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import { getMath } from '../../utils/utils'
+
 export default {
   name: 'lot-login',
+  computed: {
+    ...mapState({
+      websocket: state => state.websocket.websocket
+    })
+  },
   date () {
     return {
       username: '',
@@ -39,6 +44,8 @@ export default {
   },
   methods: {
     login () {
+      window.sessionStorage.setItem('sendUid', getMath(5))
+      // this.websocket.send(JSON.stringify({uid: window.sessionStorage.getItem('sendUid'), msg: '测试数据'}))
       this.$router.push('/locations.html')
     }
   }
@@ -66,7 +73,7 @@ button{
 .go-register{
   width: 100%;
   text-align: right;
-  margin-top: 10px;
+  margin-top: 20px;
   a{
     color: dodgerblue !important;
   }

@@ -6,80 +6,50 @@
       <section>背井离乡</section>
       <section><van-icon name="cross" @click="closeWindow"></van-icon></section>
     </article>
-    <article class="window-body">
-      <van-row class="self-row">
-        <van-col :span="15" :offset="8">
-          <section class="message">哈哈哈哈哈哈哈哈哈哈或或或或或或或哈哈哈哈哈哈哈哈哈哈或或或或或或或哈哈哈哈哈哈哈</section>
+    <article class="window-body" v-if="msgHistory[key]">
+      <van-row v-for="(item, index) in msgHistory[key].historys" :key="index" :class="{'other-row': item.type === 'receive', 'self-row': item.type === 'send'}">
+        <van-col :span="15" :offset="1" v-if="item.type === 'receive'">
+          <section class="message">{{item.msg}}</section>
         </van-col>
-      </van-row>
-      <van-row class="other-row">
-        <van-col :span="15" :offset="1">
-          <section class="message">哈哈哈哈哈哈哈哈哈哈或或或或或或或哈哈哈哈哈哈哈哈哈哈或或或或或或或哈哈哈哈哈哈哈</section>
-        </van-col>
-      </van-row>
-      <van-row class="other-row">
-        <van-col :span="15" :offset="1">
-          <section class="message">哈哈哈哈哈哈哈哈哈哈或或或或或或或哈哈哈哈哈哈哈哈哈哈或或或或或或或哈哈哈哈哈哈哈</section>
-        </van-col>
-      </van-row>
-      <van-row class="other-row">
-        <van-col :span="15" :offset="1">
-          <section class="message"><img src="/assets/pexels-photo-1362479.jpg" alt=""></section>
-        </van-col>
-      </van-row>
-      <van-row class="self-row">
-        <van-col :span="15" :offset="8">
-          <section class="message">哈哈哈哈哈哈哈哈哈哈或或或或或或或哈哈哈哈哈哈哈哈哈哈或或或或或或或哈哈哈哈哈哈哈</section>
-        </van-col>
-      </van-row>
-      <van-row class="self-row">
-        <van-col :span="15" :offset="8">
-          <section class="message">哈哈哈哈哈哈哈哈哈哈或或或或或或或哈哈哈哈哈哈哈哈哈哈或或或或或或或哈哈哈哈哈哈哈</section>
-        </van-col>
-      </van-row>
-      <van-row class="self-row">
-        <van-col :span="15" :offset="8">
-          <section class="message">哈哈哈哈哈哈哈哈哈哈或或或或或或或哈哈哈哈哈哈哈哈哈哈或或或或或或或哈哈哈哈哈哈哈</section>
-        </van-col>
-      </van-row>
-      <van-row class="self-row">
-        <van-col :span="15" :offset="8">
-          <section class="message">哈哈哈哈哈哈哈哈哈哈或或或或或或或哈哈哈哈哈哈哈哈哈哈或或或或或或或哈哈哈哈哈哈哈</section>
-        </van-col>
-      </van-row>
-      <van-row class="self-row">
-        <van-col :span="15" :offset="8">
-          <section class="message">哈哈哈</section>
-        </van-col>
-      </van-row>
-      <van-row class="self-row">
-        <van-col :span="15" :offset="8">
-          <section class="message"><img src="/assets/pexels-photo-1362479.jpg" alt=""></section>
+        <van-col :span="15" :offset="8" v-if="item.type === 'send'">
+          <section class="message">{{item.msg}}</section>
         </van-col>
       </van-row>
     </article>
     <article class="window-operation">
-      <input type="text" @keyup.13="send($event)">
-      <van-button round type="info">发送</van-button>
+      <input type="text" v-model="msg" @keyup.13="send">
+      <van-button round type="info" @click="send">发送</van-button>
       <van-icon name="add-o" @click="callGift"></van-icon>
     </article>
-    <lotGift :show="giftShow" :uid="uId" @callback="callback"></lotGift>
+    <lotGift :show="giftShow" :uid="receiveUid" @callback="callback"></lotGift>
   </article>
 </template>
 
 <script>
 import lotGift from '@/components/lot-gift'
+import { mapState } from 'vuex'
 export default {
   name: 'lot-window',
   components: { lotGift },
+  computed: {
+    ...mapState({
+      websocket: state => state.websocket.websocket,
+      msgHistory: state => state.messages.msgHistory
+    })
+  },
   data () {
     return {
       giftShow: false,
-      uId: ''
+      key: '',
+      msg: '',
+      receiveUid: ''
     }
   },
   created () {
-    this.uId = this.$route.params.uid
+    this.receiveUid = this.$route.params.uid // 接收人id
+    this.key = `${window.sessionStorage.getItem('sendUid')}${this.receiveUid}`
+    console.log(this.key)
+    console.log(this.msgHistory[this.key])
   },
   methods: {
     closeWindow () {
@@ -94,8 +64,18 @@ export default {
     callGift () {
       this.giftShow = true
     },
-    send (event) {
-      console.log('send', event)
+    send () {
+      let sendMessage = {
+        type: 'send',
+        msg: this.msg,
+        sendUid: window.sessionStorage.getItem('sendUid'),
+        receiveUid: this.receiveUid // 接收人id
+      }
+      this.$store.commit('MSG_HISTORY_PUSH', sendMessage)
+      this.websocket.send(JSON.stringify(sendMessage))
+      window.setTimeout(() => {
+        this.msg = ''
+      }, 50)
     }
   }
 }
@@ -147,6 +127,7 @@ export default {
     .self-row{
       clear: left;
       section.message{
+        text-align: right;
         margin: 10px 0;
         background-color: white;
         border-radius: 10%;

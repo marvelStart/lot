@@ -10,7 +10,17 @@
             <p>最后一条聊天记录</p>
           </van-col>
           <van-col :span="4" class="chat-item-operation">
-            <van-icon name="chat-o" @click="newWindow('CDSSDQDS6548QDSDF94A')"></van-icon>
+            <van-icon name="chat-o" @click="newWindow('10046')"></van-icon>
+          </van-col>
+        </van-row>
+        <van-row>
+          <van-col :span="4" class="chat-item-icon"><img src="/assets/pexels-photo-1362479.jpg" alt=""></van-col>
+          <van-col :span="14" :offset="2" class="chat-item-content">
+            <p>背井离乡2</p>
+            <p>最后一条聊天记录</p>
+          </van-col>
+          <van-col :span="4" class="chat-item-operation">
+            <van-icon name="chat-o" @click="newWindow('10047')"></van-icon>
           </van-col>
         </van-row>
       </section>

@@ -12,58 +12,58 @@
       <section class="gifts">
         <van-row gutter="10">
           <van-col :span="4" class="gift-item">
-            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: 10000})" alt="">
+            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: uid})" alt="">
           </van-col>
           <van-col :span="4" class="gift-item">
-            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: 10000})" alt="">
+            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: uid})" alt="">
           </van-col>
           <van-col :span="4" class="gift-item">
-            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: 10000})" alt="">
+            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: uid})" alt="">
           </van-col>
           <van-col :span="4" class="gift-item">
-            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: 10000})" alt="">
+            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: uid})" alt="">
           </van-col>
           <van-col :span="4" class="gift-item">
-            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: 10000})" alt="">
+            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: uid})" alt="">
           </van-col>
           <van-col :span="4" class="gift-item">
-            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: 10000})" alt="">
+            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: uid})" alt="">
           </van-col>
           <van-col :span="4" class="gift-item">
-            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: 10000})" alt="">
+            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: uid})" alt="">
           </van-col>
           <van-col :span="4" class="gift-item">
-            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: 10000})" alt="">
+            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: uid})" alt="">
           </van-col>
           <van-col :span="4" class="gift-item">
-            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: 10000})" alt="">
+            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: uid})" alt="">
           </van-col>
           <van-col :span="4" class="gift-item">
-            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: 10000})" alt="">
+            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: uid})" alt="">
           </van-col>
           <van-col :span="4" class="gift-item">
-            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: 10000})" alt="">
+            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: uid})" alt="">
           </van-col>
           <van-col :span="4" class="gift-item">
-            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: 10000})" alt="">
+            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: uid})" alt="">
           </van-col>
           <van-col :span="4" class="gift-item">
-            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: 10000})" alt="">
+            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: uid})" alt="">
           </van-col>
           <van-col :span="4" class="gift-item">
-            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: 10000})" alt="">
+            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: uid})" alt="">
           </van-col>
           <van-col :span="4" class="gift-item">
-            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: 10000})" alt="">
+            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: uid})" alt="">
           </van-col>
           <van-col :span="4" class="gift-item">
-            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: 10000})" alt="">
+            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: uid})" alt="">
           </van-col>
           <van-col :span="4" class="gift-item">
-            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: 10000})" alt="">
+            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: uid})" alt="">
           </van-col>
           <van-col :span="4" class="gift-item">
-            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: 10000})" alt="">
+            <img src="/assets/pexels-photo-1362479.jpg" @click="send({uid: uid})" alt="">
           </van-col>
         </van-row>
       </section>
@@ -74,7 +74,7 @@
 <script>
 export default {
   name: 'lot-gift',
-  props: ['show'],
+  props: ['show', 'uid'],
   methods: {
     send (item) {
       this.$emit('callback', item)

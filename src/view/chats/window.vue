@@ -63,7 +63,7 @@
       <van-button round type="info">发送</van-button>
       <van-icon name="add-o" @click="callGift"></van-icon>
     </article>
-    <lotGift :show="giftShow" @callback="callback"></lotGift>
+    <lotGift :show="giftShow" :uid="uId" @callback="callback"></lotGift>
   </article>
 </template>
 
@@ -74,8 +74,12 @@ export default {
   components: { lotGift },
   data () {
     return {
-      giftShow: false
+      giftShow: false,
+      uId: ''
     }
+  },
+  created () {
+    this.uId = this.$route.params.uid
   },
   methods: {
     closeWindow () {

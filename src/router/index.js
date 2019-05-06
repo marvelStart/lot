@@ -4,6 +4,8 @@ import Router from 'vue-router'
 import userRoute from './modules/user'
 import chatRoute from './modules/chat'
 import locationRoute from './modules/locations'
+import lotLogin from '@/view/users/login'
+import lotRegister from '@/view/users/register'
 
 Vue.use(Router)
 
@@ -15,7 +17,17 @@ export default new Router({
     ...locationRoute,
     {
       path: '/',
-      redirect: '/locations.html'
+      redirect: '/login.html'
+    },
+    {
+      path: '/login.html',
+      component: lotLogin,
+      name: '登录'
+    },
+    {
+      path: '/register.html',
+      component: lotRegister,
+      name: '注册'
     }
   ]
 })

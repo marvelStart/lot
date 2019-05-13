@@ -11,19 +11,28 @@ export default {
   computed: {
     ...mapState({
       websocket: state => state.websocket.websocket,
-      servicePath: state => state.websocket.servicePath
+      servicePath: state => state.websocket.servicePath,
+      uId: state => state.auth.user.uId
     })
   },
-  mounted () {
-    if ('WebSocket' in window) {
-      const tempWebsocket = new WebSocket(this.servicePath)
-      this.$store.commit('WEBSOCKET_INIT', tempWebsocket)
-      this.initWebSocket()
-    } else {
-      alert('当前浏览器 Not support websocket')
+  watch: {
+    uId (newV, oldV) {
+      if (newV !== '') {
+        this.newSocket()
+      }
     }
   },
+  mounted () {
+    this.newSocket()
+  },
   methods: {
+    newSocket () {
+      if ('WebSocket' in window && this.uId !== '') {
+        const tempWebsocket = new WebSocket(`${this.servicePath}${this.uId}`)
+        this.$store.commit('WEBSOCKET_INIT', tempWebsocket)
+        this.initWebSocket()
+      }
+    },
     initWebSocket () {
       // 连接错误
       this.websocket.onerror = this.setErrorMessage

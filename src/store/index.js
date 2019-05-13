@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import common from './modules/common'
 import websocket from './modules/websocket'
 import messages from './modules/messages'
+import auth from './modules/auth'
 
 Vue.use(Vuex)
 
@@ -26,6 +27,7 @@ export default new Vuex.Store({
   modules: {
     common,
     websocket,
-    messages
+    messages,
+    auth
   }
 })

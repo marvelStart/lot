@@ -18,15 +18,8 @@ const mutations = {
    */
   MSG_HISTORY_PUSH (state, msg) {
     let key = `${msg.sendUid}${msg.receiveUid}`
-    /* if (msg.type === 'send') {
-      key = `${msg.sendUid}${msg.receiveUid}`
-    }
-    if (msg.type === 'receive') {
-      key = `${msg.sendUid}${msg.receiveUid}`
-    } */
     let dispose = true // 记录是否完成处理
     for (let temp in state.msgHistory) {
-      console.log(temp)
       if (temp !== key) {
         continue
       }
@@ -40,17 +33,19 @@ const mutations = {
     // 判断是否完成处理
     if (dispose) {
       // 未完成处理
-      state.msgHistory[key] = {
+      let tempMsg = {}
+      tempMsg[key] = {
         sendUid: msg.sendUid,
         receiveUid: msg.receiveUid,
         historys: []
       }
-      state.msgHistory[key].historys.push({
+      tempMsg[key].historys.push({
         type: msg.type,
         msg: msg.msg
       })
+      state.msgHistory = Object.assign(state.msgHistory, tempMsg)
     }
-    console.log(state.msgHistory)
+    console.log(state)
   }
 }
 

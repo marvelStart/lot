@@ -6,12 +6,14 @@
     <van-cell-group>
       <van-field
         clearable
+        v-model="username"
         left-icon="manager"
         placeholder="请输入用户名"
       />
       <van-field
         clearable
         left-icon="lock"
+        v-model="password"
         type="password"
         placeholder="请输入密码"
       />
@@ -27,7 +29,6 @@
 
 <script>
 import { mapState } from 'vuex'
-import { getMath } from '../../utils/utils'
 
 export default {
   name: 'lot-login',
@@ -36,7 +37,7 @@ export default {
       websocket: state => state.websocket.websocket
     })
   },
-  date () {
+  data () {
     return {
       username: '',
       password: ''
@@ -44,7 +45,7 @@ export default {
   },
   methods: {
     login () {
-      window.sessionStorage.setItem('sendUid', getMath(5))
+      this.$store.commit('LOT_AUTH_SET_USER', {uId: this.username})
       // this.websocket.send(JSON.stringify({uid: window.sessionStorage.getItem('sendUid'), msg: '测试数据'}))
       this.$router.push('/locations.html')
     }

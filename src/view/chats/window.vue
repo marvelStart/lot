@@ -43,7 +43,8 @@ export default {
   computed: {
     ...mapState({
       websocket: state => state.websocket.websocket,
-      msgHistory: state => state.messages.msgHistory
+      msgHistory: state => state.messages.msgHistory,
+      user: state => state.auth.user
     })
   },
   data () {
@@ -56,7 +57,7 @@ export default {
   },
   created () {
     this.receiveUid = this.$route.params.uid // 接收人id
-    this.key = `${window.sessionStorage.getItem('sendUid')}${this.receiveUid}`
+    this.key = `${this.user.uId}${this.receiveUid}`
   },
   methods: {
     closeWindow () {
@@ -75,13 +76,15 @@ export default {
       let sendMessage = {
         type: 'send',
         msg: this.msg,
-        sendUid: window.sessionStorage.getItem('sendUid'),
+        sendUid: this.user.uId,
         receiveUid: this.receiveUid // 接收人id
       }
       this.$store.commit('MSG_HISTORY_PUSH', sendMessage)
       this.websocket.send(JSON.stringify(sendMessage))
+      console.log(this.msgHistory)
       window.setTimeout(() => {
         this.msg = ''
+        this.$forceUpdate()
       }, 100)
     }
   }

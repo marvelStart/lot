@@ -1,12 +1,19 @@
 const state = {
   user: {
-    uId: '10086'
+    uId: ''
   }
 }
 
 const activitys = {}
 
-const mutations = {}
+const mutations = {
+  // 设置user对象
+  LOT_AUTH_SET_USER (state, user) {
+    console.log(user)
+    state.user = user
+    console.log(state.user)
+  }
+}
 
 const getters = {}
 

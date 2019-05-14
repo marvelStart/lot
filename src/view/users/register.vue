@@ -50,7 +50,6 @@ export default {
   },
   methods: {
     register () {
-      this.websocket.send(JSON.stringify({uid: 10046, msg: '测试数据'}))
       this.$router.push('/locations.html')
     }
   }

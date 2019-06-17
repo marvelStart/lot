@@ -41,7 +41,7 @@
             <label>金币：<span>9999</span></label>
           </van-col>
           <van-col :span="8" class="right-item">
-            <router-link to="/buy/gold.html"><span>购买金币</span><van-icon name="arrow"></van-icon></router-link>
+            <router-link to="/buy/gold.html"><span>购买礼包</span><van-icon name="arrow"></van-icon></router-link>
           </van-col>
         </van-row>
         <van-row class="wallet-item">
@@ -78,6 +78,13 @@
           </van-row>
           </router-link>
         </section>
+      </article>
+      <!-- 中奖记录 -->
+      <article>
+        <van-row class="wallet-item">
+          <van-col :span="23">中奖记录查询</van-col>
+          <van-col :span="1"><van-icon name="arrow"></van-icon></van-col>
+        </van-row>
       </article>
     </article>
     <lotFooter></lotFooter>

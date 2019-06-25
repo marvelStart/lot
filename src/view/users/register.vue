@@ -1,73 +1,107 @@
 <template>
   <article class="register-content">
-    <section class="register-logo">
-      <van-icon name="user-circle-o"></van-icon>
-    </section>
-    <van-cell-group>
-      <van-field
-        required
-        clearable
-        label="手机号"
-        right-icon="question-o"
-        placeholder="请输入用户名"
-        @click-right-icon="$toast('question')"
-      />
-      <van-field
-        v-model="sms"
-        center
-        clearable
-        label="短信验证码"
-        placeholder="请输入短信验证码"
-      >
-        <van-button slot="button" size="small" type="primary">发送验证码</van-button>
-      </van-field>
-      <van-field
-        type="password"
-        label="密码"
-        placeholder="请输入密码"
-        required
-      />
-    </van-cell-group>
+    <van-field
+      type="text"
+      label="昵称"
+      placeholder="请输入昵称"
+      v-model="tempForm.nickname"
+      input-align="right"
+      required
+    />
+    <van-field
+      type="text"
+      label="手机号"
+      placeholder="请输入手机号"
+      v-model="tempForm.phone"
+      input-align="right"
+      required
+    />
+    <van-cell title="出生日期" is-link :value="tempForm.birthDate" required @click="showDate = true" />
+    <van-row class="sex-content">
+      <van-col :span="12">性别</van-col>
+      <van-col :span="12" style="text-align: right">
+        <van-radio-group v-model="tempForm.sex">
+          <van-radio name="1">男</van-radio>
+          <van-radio name="2">女</van-radio>
+        </van-radio-group>
+      </van-col>
+    </van-row>
+    <van-field
+      type="password"
+      label="密码"
+      v-model="tempForm.pwd"
+      placeholder="请输入密码"
+      input-align="right"
+      required
+    />
     <van-button size="large" type="primary" @click="register">注册</van-button>
+    <lotDate :showMask="showDate" :date="tempForm.birthDate" @callback="dateBack($event)"></lotDate>
   </article>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import lotDate from '@/components/lot-date'
+import { register } from '@/api/user'
 export default {
   name: 'lot-register',
-  computed: {
-    ...mapState({
-      websocket: state => state.websocket.websocket
-    })
-  },
-  date () {
+  components: { lotDate },
+  data () {
     return {
-      username: '',
-      sms: '',
-      password: ''
+      showDate: false,
+      fileList: [],
+      tempForm: {
+        nickname: '',
+        phone: '',
+        birthDate: '',
+        sex: '1',
+        headImg: '',
+        pwd: '',
+        reaffirmPwd: ''
+      }
     }
   },
   methods: {
     register () {
-      this.$router.push('/locations.html')
+      this.tempForm.reaffirmPwd = this.tempForm.pwd
+      register(this.tempForm).then(result => {
+        console.log(result)
+      })
+      // this.$router.push('/locations.html')
+    },
+    dateBack (event) {
+      this.tempForm.birthDate = event
+      this.showDate = false
+    },
+    onRead (event) {
+      console.log(event)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.register-logo{
-  padding-top: 50px;
-  text-align: center;
-  font-size: 200px;
-  color: #666;
-}
 .register-content{
   width: 100%;
   height: 100%;
   background-color: white;
   padding: 0px 15px;
   box-sizing: border-box;
+}
+.sex-content{
+  height: 40px;
+  line-height: 40px;
+  padding-left: 0.4rem;
+  box-sizing: border-box;
+  .van-radio{
+    display: inline-block;
+    width: 60px;
+  }
+  &:after{
+     content: '*';
+     position: absolute;
+     left: 0.55rem;
+     font-size: 0.373333rem;
+     color: #f44;
+  }
 }
 </style>

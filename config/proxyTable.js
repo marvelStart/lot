@@ -1,11 +1,11 @@
 const proxyTable = {
-  /* '/ws/': {
-    target: '',
+  '/lot/*': {
+    target: '//47.98.173.88:8081/',
     changeOrigin: true,
     pathRewrite: {
-      '^/ws': ''
+      '^/lot': '/'
     }
-  } */
+  }
 }
 
 module.exports = proxyTable

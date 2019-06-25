@@ -8,10 +8,12 @@ import store from './store'
 import vant from 'vant'
 import 'vant/lib/index.css'
 import 'lib-flexible/flexible'
+import moment from 'moment'
 
 Vue.use(vant)
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
+Vue.prototype.moment = moment
 
 /* eslint-disable no-new */
 new Vue({

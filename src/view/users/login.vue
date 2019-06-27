@@ -1,24 +1,24 @@
 <template>
   <article class="user-login">
     <section class="login-logo">
-      <van-icon name="user-circle-o"></van-icon>
+      <img src="/assets/index/temp-logo.png">
     </section>
     <van-cell-group>
       <van-field
         clearable
-        v-model="username"
+        v-model="formData.accountNum"
         left-icon="manager"
         placeholder="请输入用户名"
       />
       <van-field
         clearable
         left-icon="lock"
-        v-model="password"
+        v-model="formData.password"
         type="password"
         placeholder="请输入密码"
       />
     </van-cell-group>
-    <van-button type="primary" size="large" @click="login">登录</van-button>
+    <van-button type="primary" size="large" @click="toLogin">登录</van-button>
     <section class="go-register">
       <router-link to="/register.html">
         立即注册
@@ -29,7 +29,8 @@
 
 <script>
 import { mapState } from 'vuex'
-
+import { login, queryUser } from '@/api/user'
+import { Toast } from 'vant'
 export default {
   name: 'lot-login',
   computed: {
@@ -39,15 +40,28 @@ export default {
   },
   data () {
     return {
-      username: '',
-      password: ''
+      formData: {
+        accountNum: '17621645202',
+        password: 'Wei123456'
+      }
     }
   },
   methods: {
-    login () {
-      this.$store.commit('LOT_AUTH_SET_USER', {uId: this.username})
-      // this.websocket.send(JSON.stringify({uid: window.sessionStorage.getItem('sendUid'), msg: '测试数据'}))
-      this.$router.push('/locations.html')
+    toLogin () {
+      login(this.formData).then(result => {
+        if (result.status === 200 && result.data && result.data.returnCode === '10000') {
+          // 登录成功
+          Toast.success(result.data.msg)
+          this.$store.commit('LOT_AUTH_SET_USER', {account: this.formData.accountNum})
+          // this.websocket.send(JSON.stringify({account: window.sessionStorage.getItem('sendUid'), msg: '测试数据'}))
+          // this.$router.push('/locations.html')
+          queryUser({userId: this.formData.accountNum}).then(userResult => {
+            console.log(userResult)
+          })
+        } else {
+          Toast.fail(result.data.msg)
+        }
+      })
     }
   }
 }
@@ -60,6 +74,9 @@ export default {
   font-size: 200px;
   margin-bottom: 20px;
   color: #666;
+  img{
+    width: 50%;
+  }
 }
 .user-login{
   width: 100%;

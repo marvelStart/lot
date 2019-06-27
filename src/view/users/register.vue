@@ -21,8 +21,8 @@
       <van-col :span="12">性别</van-col>
       <van-col :span="12" style="text-align: right">
         <van-radio-group v-model="tempForm.sex">
-          <van-radio name="1">男</van-radio>
-          <van-radio name="2">女</van-radio>
+          <van-radio name="男">男</van-radio>
+          <van-radio name="女">女</van-radio>
         </van-radio-group>
       </van-col>
     </van-row>
@@ -52,9 +52,9 @@ export default {
       tempForm: {
         nickname: '',
         phone: '',
-        birthDate: '',
-        sex: '1',
-        headImg: '',
+        birthDate: '1999-01-01',
+        sex: '男',
+        headImg: 'https://wuyou-resource.oss-cn-shanghai.aliyuncs.com/Solution/ef139b19-1349-4e7d-8a0b-45ef5126ed69_u42201155441671061495fm27gp0.jpg',
         pwd: '',
         reaffirmPwd: ''
       }
@@ -63,8 +63,11 @@ export default {
   methods: {
     register () {
       this.tempForm.reaffirmPwd = this.tempForm.pwd
+      console.log(this.tempForm)
       register(this.tempForm).then(result => {
         console.log(result)
+      }).catch(error => {
+        console.log(error)
       })
       // this.$router.push('/locations.html')
     },

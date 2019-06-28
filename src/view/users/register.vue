@@ -36,7 +36,7 @@
     <van-field
       type="password"
       label="密码"
-      v-model="tempForm.pwd"
+      v-model="tempForm.password"
       placeholder="请输入密码"
       input-align="right"
       required
@@ -66,7 +66,7 @@ export default {
         birthDate: '1999-01-01',
         sex: '男',
         headImg: '/assets/index/default-head-icon.png',
-        pwd: '',
+        password: '',
         reaffirmPwd: ''
       }
     }
@@ -74,7 +74,7 @@ export default {
   methods: {
     // 立即注册
     register () {
-      this.tempForm.reaffirmPwd = this.tempForm.pwd
+      this.tempForm.reaffirmPwd = this.tempForm.password
       if (!this.validator()) {
         return false
       }
@@ -83,8 +83,12 @@ export default {
         if (fileResult.status === 200 && fileResult.data && fileResult.data.returnCode === '10000' && fileResult.data.result) {
           this.tempForm.headImg = fileResult.data.result.urls
           register(this.tempForm).then(result => {
-            // TODO 处理注册完成后续操作
-            console.log(result)
+            if (result.status === 200 && result.data && result.data.returnCode === '10000') {
+              Toast.success('注册成功')
+              this.$router.push('/login.html')
+            } else {
+              Toast.fail(result.data.msg)
+            }
           }).catch(error => {
             console.log(error)
           })
@@ -114,7 +118,7 @@ export default {
       if (!iphone(this.tempForm.phone)) {
         return false
       }
-      if (this.tempForm.pwd.trim().length === 0) {
+      if (this.tempForm.password.trim().length === 0) {
         Toast.fail('请设置密码')
         return false
       }

@@ -74,11 +74,16 @@
         </section>
       </article>
       <!-- 中奖记录 -->
-      <article>
-        <van-row class="wallet-item">
-          <van-col :span="23">中奖记录查询</van-col>
-          <van-col :span="1"><van-icon name="arrow"></van-icon></van-col>
-        </van-row>
+      <article class="user-top-up">
+        <h4>抽奖活动</h4>
+        <section>
+          <router-link to="">
+            <van-row>
+              <van-col :span="23">中奖记录查询</van-col>
+              <van-col :span="1"><van-icon name="arrow"></van-icon></van-col>
+            </van-row>
+          </router-link>
+        </section>
       </article>
     </article>
     <lotFooter></lotFooter>

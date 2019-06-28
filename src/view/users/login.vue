@@ -2,7 +2,6 @@
   <article class="user-login">
     <section class="login-logo">
       <img src="/assets/index/temp-logo.png">
-      <!--<img src="/assets/index/icon.png">-->
     </section>
     <van-cell-group>
       <van-field
@@ -44,8 +43,8 @@ export default {
   data () {
     return {
       formData: {
-        accountNum: '17621645202',
-        password: 'Wei123456'
+        accountNum: '',
+        password: ''
       }
     }
   },

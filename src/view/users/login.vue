@@ -2,10 +2,12 @@
   <article class="user-login">
     <section class="login-logo">
       <img src="/assets/index/temp-logo.png">
+      <!--<img src="/assets/index/icon.png">-->
     </section>
     <van-cell-group>
       <van-field
         clearable
+        maxlength="11"
         v-model="formData.accountNum"
         left-icon="manager"
         placeholder="请输入用户名"
@@ -16,6 +18,7 @@
         v-model="formData.password"
         type="password"
         placeholder="请输入密码"
+        maxlength="18"
       />
     </van-cell-group>
     <van-button type="primary" size="large" @click="toLogin">登录</van-button>
@@ -29,7 +32,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import { login, queryUser } from '@/api/user'
+import { login } from '@/api/user'
 import { Toast } from 'vant'
 export default {
   name: 'lot-login',
@@ -49,15 +52,13 @@ export default {
   methods: {
     toLogin () {
       login(this.formData).then(result => {
-        if (result.status === 200 && result.data && result.data.returnCode === '10000') {
+        if (result.status === 200 && result.data && result.data.returnCode === '10000' && result.data.result) {
           // 登录成功
           Toast.success(result.data.msg)
-          this.$store.commit('LOT_AUTH_SET_USER', {account: this.formData.accountNum})
-          // this.websocket.send(JSON.stringify({account: window.sessionStorage.getItem('sendUid'), msg: '测试数据'}))
-          // this.$router.push('/locations.html')
-          queryUser({userId: this.formData.accountNum}).then(userResult => {
-            console.log(userResult)
-          })
+          if (result.data.result.userInfo) {
+            this.$store.commit('LOT_AUTH_SET_USER', result.data.result.userInfo)
+          }
+          this.$router.push('/locations.html')
         } else {
           Toast.fail(result.data.msg)
         }

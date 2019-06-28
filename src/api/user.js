@@ -8,8 +8,8 @@ import request from '@/utils/request'
 export const register = (data) => {
   return request({
     url: '/lot/webUser/register.do',
-    method: 'get',
-    params: data
+    method: 'post',
+    data: data
   })
 }
 
@@ -20,8 +20,8 @@ export const register = (data) => {
 export const login = (data) => {
   return request({
     url: '/lot/webUser/login.do',
-    method: 'get',
-    params: data
+    method: 'post',
+    data: data
   })
 }
 
@@ -32,7 +32,7 @@ export const login = (data) => {
 export const queryUser = (data) => {
   return request({
     url: '/lot/webUser/queryUserInfo.do',
-    method: 'get',
-    params: data
+    method: 'post',
+    data: data
   })
 }

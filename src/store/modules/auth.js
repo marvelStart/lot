@@ -1,6 +1,6 @@
 const state = {
   user: {
-    uId: ''
+    userId: ''
   }
 }
 

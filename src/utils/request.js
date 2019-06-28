@@ -10,7 +10,7 @@ service.interceptors.request.use(config => {
   // if (store.getters.token) {
   //   config.headers['X-Ticket'] = getToken()
   // }
-  config.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
+  // config.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
   return config
 }, error => {
   Promise.reject(error)

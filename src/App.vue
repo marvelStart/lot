@@ -12,7 +12,7 @@ export default {
     ...mapState({
       websocket: state => state.websocket.websocket,
       servicePath: state => state.websocket.servicePath,
-      uId: state => state.auth.user.uId
+      uId: state => state.auth.user.userId
     })
   },
   watch: {

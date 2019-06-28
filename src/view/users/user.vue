@@ -20,12 +20,6 @@
       <section class="user-imgs">
         <van-row gutter="5">
           <van-col :span="6"><img src="/assets/pexels-photo-1362479.jpg" @click="reView('/assets/pexels-photo-1362479.jpg')" alt=""></van-col>
-          <van-col :span="6"><img src="/assets/pexels-photo-1362479.jpg" @click="reView('/assets/pexels-photo-1362479.jpg')" alt=""></van-col>
-          <van-col :span="6"><img src="/assets/pexels-photo-1362479.jpg" @click="reView('/assets/pexels-photo-1362479.jpg')" alt=""></van-col>
-          <van-col :span="6"><img src="/assets/pexels-photo-1362479.jpg" @click="reView('/assets/pexels-photo-1362479.jpg')" alt=""></van-col>
-          <van-col :span="6"><img src="/assets/pexels-photo-1362479.jpg" @click="reView('/assets/pexels-photo-1362479.jpg')" alt=""></van-col>
-          <van-col :span="6"><img src="/assets/pexels-photo-1362479.jpg" @click="reView('/assets/pexels-photo-1362479.jpg')" alt=""></van-col>
-          <van-col :span="6"><img src="/assets/pexels-photo-1362479.jpg" @click="reView('/assets/pexels-photo-1362479.jpg')" alt=""></van-col>
           <van-col :span="6">
             <van-uploader :after-read="callUpImg" class="up-user-photograph">
               <van-icon name="photograph" />

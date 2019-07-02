@@ -18,14 +18,11 @@
         type="password"
         placeholder="请输入密码"
         maxlength="18"
+        @keyup.enter="toLogin"
       />
     </van-cell-group>
     <van-button type="primary" size="large" @click="toLogin">登录</van-button>
-    <section class="go-register">
-      <router-link to="/register.html">
-        立即注册
-      </router-link>
-    </section>
+    <section class="go-register" @click="gotoRegister">立即注册</section>
   </article>
 </template>
 
@@ -62,6 +59,9 @@ export default {
           Toast.fail(result.data.msg)
         }
       })
+    },
+    gotoRegister () {
+      this.$router.push('/register.html')
     }
   }
 }
@@ -92,8 +92,6 @@ button{
   width: 100%;
   text-align: right;
   margin-top: 20px;
-  a{
-    color: dodgerblue !important;
-  }
+  color: dodgerblue !important;
 }
 </style>

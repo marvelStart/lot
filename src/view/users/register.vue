@@ -1,49 +1,52 @@
 <template>
-  <article class="register-content">
-    <section class="uploading-icon">
-      <van-uploader :after-read="onRead" class="uploading-icon">
-        <img :src="tempForm.headImg" alt="">
-      </van-uploader>
-    </section>
-    <van-field
-      type="text"
-      label="昵称"
-      placeholder="请输入昵称"
-      v-model="tempForm.nickname"
-      input-align="right"
-      required
-      maxlength="6"
-    />
-    <van-field
-      type="text"
-      label="手机号"
-      placeholder="请输入手机号"
-      v-model="tempForm.phone"
-      input-align="right"
-      required
-      maxlength="11"
-    />
-    <van-cell title="出生日期" is-link :value="tempForm.birthDate" required @click="showDate = true"/>
-    <van-row class="sex-content">
-      <van-col :span="12">性别</van-col>
-      <van-col :span="12" style="text-align: right">
-        <van-radio-group v-model="tempForm.sex">
-          <van-radio name="男">男</van-radio>
-          <van-radio name="女">女</van-radio>
-        </van-radio-group>
-      </van-col>
-    </van-row>
-    <van-field
-      type="password"
-      label="密码"
-      v-model="tempForm.password"
-      placeholder="请输入密码"
-      input-align="right"
-      required
-      maxlength="18"
-    />
-    <van-button size="large" type="primary" @click="register">注册</van-button>
-    <lotDate :showMask="showDate" :date="tempForm.birthDate" @callback="dateBack($event)"></lotDate>
+  <article>
+    <lotHeader></lotHeader>
+    <article class="register-content">
+      <section class="uploading-icon">
+        <van-uploader :after-read="onRead" class="uploading-icon">
+          <img :src="tempForm.headImg" alt="">
+        </van-uploader>
+      </section>
+      <van-field
+        type="text"
+        label="昵称"
+        placeholder="请输入昵称"
+        v-model="tempForm.nickname"
+        input-align="right"
+        required
+        maxlength="6"
+      />
+      <van-field
+        type="text"
+        label="手机号"
+        placeholder="请输入手机号"
+        v-model="tempForm.phone"
+        input-align="right"
+        required
+        maxlength="11"
+      />
+      <van-cell title="出生日期" is-link :value="tempForm.birthDate" required @click="showDate = true"/>
+      <van-row class="sex-content">
+        <van-col :span="12">性别</van-col>
+        <van-col :span="12" style="text-align: right">
+          <van-radio-group v-model="tempForm.sex">
+            <van-radio name="男">男</van-radio>
+            <van-radio name="女">女</van-radio>
+          </van-radio-group>
+        </van-col>
+      </van-row>
+      <van-field
+        type="password"
+        label="密码"
+        v-model="tempForm.password"
+        placeholder="请输入密码"
+        input-align="right"
+        required
+        maxlength="18"
+      />
+      <van-button size="large" type="primary" @click="register">注册</van-button>
+      <lotDate :showMask="showDate" :date="tempForm.birthDate" @callback="dateBack($event)"></lotDate>
+    </article>
   </article>
 </template>
 
@@ -53,9 +56,10 @@ import { register } from '@/api/user'
 import {iphone} from '@/utils/validator'
 import { uploadFile } from '@/api/common'
 import { Toast } from 'vant'
+import lotHeader from '@/components/lot-header'
 export default {
   name: 'lot-register',
-  components: {lotDate},
+  components: {lotDate, lotHeader},
   data () {
     return {
       showDate: false,
@@ -70,6 +74,9 @@ export default {
         reaffirmPwd: ''
       }
     }
+  },
+  mounted () {
+    this.$store.commit('LOT_COMMON_SET_HEADER_TITLE', '用户注册')
   },
   methods: {
     // 立即注册
@@ -138,6 +145,9 @@ export default {
         Toast.fail('请上传头像')
         reject()
       }
+    },
+    onClickLeft () {
+      this.$router.replace('/login.html')
     }
   }
 }

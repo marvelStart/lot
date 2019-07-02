@@ -1,35 +1,27 @@
 <template>
   <div class="mask" v-show="showMask">
     <div class="date-content">
-      <van-datetime-picker
-        type="date"
-        v-model="tempDate"
-        :max-date="maxDate"
-        :min-date="minDate"
-        @confirm="confirm"
-        @cancel="cancel"
-      />
+      <van-area :area-list="areas" @confirm="confirm" @cancel="cancel" :value="code" />
     </div>
   </div>
 </template>
 
 <script>
+import { area } from '@/utils/utils'
 export default {
-  name: 'lot-date',
-  props: ['showMask', 'date'],
+  name: 'lotAreas',
+  props: ['code', 'showMask'],
   data () {
     return {
-      tempDate: this.date || new Date(),
-      maxDate: new Date(),
-      minDate: new Date('1960-01-01')
+      areas: area()
     }
   },
   methods: {
-    confirm () {
-      this.$emit('callback', this.moment(this.tempDate).format('YYYY-MM-DD'))
+    confirm (event) {
+      this.$emit('callback', event)
     },
     cancel () {
-      this.$emit('callback', this.date)
+      this.$emit('callback')
     }
   }
 }

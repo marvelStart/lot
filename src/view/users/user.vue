@@ -5,7 +5,7 @@
       <section class="user-content">
         <van-row>
           <van-col :span="8" class="user-icon">
-            <img src="/assets/pexels-photo-1362479.jpg" alt="">
+            <img :src="user.headImg" alt="">
           </van-col>
           <van-col :span="14" :offset="2" class="user-info">
             <!-- 名称 -->
@@ -93,9 +93,15 @@
 <script>
 import lotFooter from '@/components/lot-footer'
 import { ImagePreview } from 'vant'
+import { mapState } from 'vuex'
 export default {
   name: 'lot-user',
   components: { lotFooter },
+  computed: {
+    ...mapState({
+      user: state => state.auth.user
+    })
+  },
   created () {
     this.$store.commit('LOT_COMMON_SET_FOOTER_ACTIVE', 2)
   },

@@ -1,4 +1,6 @@
 import axios from 'axios'
+import store from '@/store'
+import { getToken } from '@/utils/cookie'
 
 // create an axios instance
 const service = axios.create({
@@ -7,9 +9,9 @@ const service = axios.create({
 
 // request interceptor
 service.interceptors.request.use(config => {
-  // if (store.getters.token) {
-  //   config.headers['X-Ticket'] = getToken()
-  // }
+  if (store.getters.token) {
+    config.headers['Authorization'] = getToken()
+  }
   // config.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
   return config
 }, error => {

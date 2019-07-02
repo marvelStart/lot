@@ -52,7 +52,8 @@ export default {
           // 登录成功
           Toast.success(result.data.msg)
           if (result.data.result.userInfo) {
-            this.$store.commit('LOT_AUTH_SET_USER', result.data.result.userInfo)
+            // this.$store.commit('LOT_AUTH_SET_USER', result.data.result.userInfo)
+            this.$store.commit('LOT_SET_TOKEN_ID', {AuthorizationId: 'AuthorizationId', Authorization: 'Authorization'})
           }
           this.$router.push('/locations.html')
         } else {

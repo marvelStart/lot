@@ -11,6 +11,8 @@ const state = {
 }
 
 const getters = {
+  token: state => state.auth.Authorization,
+  userId: state => state.auth.AuthorizationId
 }
 
 const actions = {

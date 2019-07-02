@@ -9,7 +9,7 @@
           </van-col>
           <van-col :span="14" :offset="2" class="user-info">
             <!-- 名称 -->
-            <p>背井离乡</p>
+            <p>{{user.nickName}}</p>
             <!-- 等级 -->
             <p>游客</p>
             <p><router-link to="/edit.html"><van-icon name="setting-o"></van-icon><span>个人信息</span></router-link></p>
@@ -19,7 +19,7 @@
       <!-- 照片墙 -->
       <section class="user-imgs">
         <van-row gutter="5">
-          <van-col :span="6"><img src="/assets/pexels-photo-1362479.jpg" @click="reView('/assets/pexels-photo-1362479.jpg')" alt=""></van-col>
+          <van-col :span="6" v-for="(item, index) of photoWall" :key="index"><img :src="item" @click="reView(item)" alt=""></van-col>
           <van-col :span="6">
             <van-uploader :after-read="callUpImg" class="up-user-photograph">
               <van-icon name="photograph" />
@@ -29,7 +29,7 @@
       </section>
       <!-- 钱包 -->
       <section class="wallet-content">
-        <h4>钱包</h4>
+        <!--<h4>钱包</h4>-->
         <van-row class="wallet-item">
           <van-col :span="16">
             <label>金币：<span>9999</span></label>
@@ -55,7 +55,7 @@
       </section>
       <!-- 充值中心 -->
       <article class="user-top-up">
-        <h4>充值服务</h4>
+        <!--<h4>充值服务</h4>-->
         <section>
           <router-link to="/buy/vip.html">
           <van-row>
@@ -75,11 +75,31 @@
       </article>
       <!-- 中奖记录 -->
       <article class="user-top-up">
-        <h4>抽奖活动</h4>
+        <!--<h4>抽奖活动</h4>-->
         <section>
           <router-link to="">
             <van-row>
               <van-col :span="23">中奖记录查询</van-col>
+              <van-col :span="1"><van-icon name="arrow"></van-icon></van-col>
+            </van-row>
+          </router-link>
+        </section>
+      </article>
+      <!-- 设置 -->
+      <article class="user-top-up">
+        <!--<h4>设置</h4>-->
+        <!--<section>-->
+          <!--<router-link to="">-->
+            <!--<van-row>-->
+              <!--<van-col :span="23">关于随缘</van-col>-->
+              <!--<van-col :span="1"><van-icon name="arrow"></van-icon></van-col>-->
+            <!--</van-row>-->
+          <!--</router-link>-->
+        <!--</section>-->
+        <section>
+          <router-link to="">
+            <van-row>
+              <van-col :span="23">意见反馈</van-col>
               <van-col :span="1"><van-icon name="arrow"></van-icon></van-col>
             </van-row>
           </router-link>
@@ -99,15 +119,19 @@ export default {
   components: { lotFooter },
   computed: {
     ...mapState({
-      user: state => state.auth.user
+      user: state => state.auth.user,
+      photoWall: state => state.auth.photoWall
     })
   },
   created () {
     this.$store.commit('LOT_COMMON_SET_FOOTER_ACTIVE', 2)
+    if (this.user && this.user.tid) {
+      this.$store.dispatch('LOT_REFRESH_USER', {userId: this.user.tid})
+    }
   },
   methods: {
-    callUpImg (file) {
-      console.log(file)
+    callUpImg (event) {
+      console.log(event)
     },
     reView (url) {
       ImagePreview([url])

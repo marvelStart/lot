@@ -12,12 +12,19 @@ export default {
     ...mapState({
       websocket: state => state.websocket.websocket,
       servicePath: state => state.websocket.servicePath,
-      uId: state => state.auth.user.userId
-    })
+      Id: state => state.auth.AuthorizationId
+    }),
+    uId () {
+      if (this.Id) {
+        return this.Id
+      } else {
+        return null
+      }
+    }
   },
   watch: {
     uId (newV, oldV) {
-      if (newV !== '') {
+      if (newV !== '' && newV !== null) {
         this.newSocket()
       }
     }
@@ -27,8 +34,8 @@ export default {
   },
   methods: {
     newSocket () {
-      if ('WebSocket' in window && this.uId !== '') {
-        const tempWebsocket = new WebSocket(`${this.servicePath}${this.uId}`)
+      if ('WebSocket' in window && this.Id) {
+        const tempWebsocket = new WebSocket(`${this.servicePath}${this.Id}`)
         this.$store.commit('WEBSOCKET_INIT', tempWebsocket)
         this.initWebSocket()
       }

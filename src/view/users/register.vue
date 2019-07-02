@@ -11,7 +11,7 @@
         type="text"
         label="昵称"
         placeholder="请输入昵称"
-        v-model="tempForm.nickname"
+        v-model="tempForm.nickName"
         input-align="right"
         required
         maxlength="6"
@@ -65,7 +65,7 @@ export default {
       showDate: false,
       file: null,
       tempForm: {
-        nickname: '',
+        nickName: '',
         phone: '13585488024',
         birthDate: '1999-01-01',
         sex: '男',
@@ -118,7 +118,7 @@ export default {
     },
     // 校验数据
     validator () {
-      if (this.tempForm.nickname.trim().length === 0) {
+      if (this.tempForm.nickName.trim().length === 0) {
         Toast.fail('请输入昵称')
         return false
       }

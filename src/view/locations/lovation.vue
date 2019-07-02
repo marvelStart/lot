@@ -1,6 +1,10 @@
 <template>
   <!-- 附近 -->
   <article class="location-body">
+    <van-notice-bar
+      :text="notice"
+      left-icon="volume-o"
+    />
     <article class="location-content">
       <section class="location-item">
         <van-row gutter="20">
@@ -30,6 +34,11 @@ export default {
   components: { lotFooter },
   created () {
     this.$store.commit('LOT_COMMON_SET_FOOTER_ACTIVE', 0)
+  },
+  data () {
+    return {
+      notice: '恭喜“xxxx”用户中奖，请在个人中心-中奖记录中查看详细信息'
+    }
   }
 }
 </script>

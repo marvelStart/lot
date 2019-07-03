@@ -1,14 +1,14 @@
 import Cookies from 'js-cookie'
 
 export const getToken = () => {
-  return Cookies.getItem('Authorization')
+  return Cookies.get('Authorization')
 }
 
 export const getUserId = () => {
-  return Cookies.getItem('AuthorizationId')
+  return Cookies.get('AuthorizationId')
 }
 
 export const setToken = (token, id) => {
-  Cookies.setItem('Authorization', token)
-  Cookies.setItem('AuthorizationId', id)
+  Cookies.set('Authorization', token, { expires: 1 })
+  Cookies.set('AuthorizationId', id, { expires: 1 })
 }

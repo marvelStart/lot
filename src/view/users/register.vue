@@ -3,9 +3,10 @@
     <lotHeader></lotHeader>
     <article class="register-content">
       <section class="uploading-icon">
-        <van-uploader :after-read="onRead" class="uploading-icon">
+        <!--<van-uploader :after-read="onRead" class="uploading-icon">
           <img :src="tempForm.headImg" alt="">
-        </van-uploader>
+        </van-uploader>-->
+        <img :src="tempForm.headImg" alt="">
       </section>
       <van-field
         type="text"
@@ -26,10 +27,10 @@
         maxlength="11"
       />
       <van-cell title="出生日期" is-link :value="tempForm.birthDate" required @click="showDate = true"/>
-      <van-row class="sex-content">
-        <van-col :span="12">性别</van-col>
-        <van-col :span="12" style="text-align: right">
-          <van-radio-group v-model="tempForm.sex">
+      <van-row>
+        <van-col :span="12" class="sex-content">性别</van-col>
+        <van-col :span="12" style="text-align: right"  class="sex-content">
+          <van-radio-group v-model="tempForm.sex" @change="sexChange">
             <van-radio name="男">男</van-radio>
             <van-radio name="女">女</van-radio>
           </van-radio-group>
@@ -66,10 +67,10 @@ export default {
       file: null,
       tempForm: {
         nickName: '',
-        phone: '13585488024',
-        birthDate: '1999-01-01',
-        sex: '男',
-        headImg: '/assets/index/default-head-icon.png',
+        phone: '',
+        birthDate: '',
+        sex: '',
+        headImg: '/assets/index/head-icon-default.png',
         password: '',
         reaffirmPwd: ''
       }
@@ -85,22 +86,12 @@ export default {
       if (!this.validator()) {
         return false
       }
-      let promise = new Promise(this.uploadHeadIcon)
-      promise.then(fileResult => {
-        if (fileResult.status === 200 && fileResult.data && fileResult.data.returnCode === '10000' && fileResult.data.result) {
-          this.tempForm.headImg = fileResult.data.result.urls
-          register(this.tempForm).then(result => {
-            if (result.status === 200 && result.data && result.data.returnCode === '10000') {
-              Toast.success('注册成功')
-              this.$router.push('/login.html')
-            } else {
-              Toast.fail(result.data.msg)
-            }
-          }).catch(error => {
-            console.log(error)
-          })
+      register(this.tempForm).then(result => {
+        if (result.status === 200 && result.data && result.data.returnCode === '10000') {
+          Toast.success('注册成功')
+          this.$router.push('/login.html')
         } else {
-          Toast.fail('头像不符合规则请重新上传。')
+          Toast.fail(result.data.msg)
         }
       }).catch(error => {
         console.log(error)
@@ -123,6 +114,10 @@ export default {
         return false
       }
       if (!iphone(this.tempForm.phone)) {
+        return false
+      }
+      if (this.tempForm.sex.trim().length === 0) {
+        Toast.fail('请选择性别')
         return false
       }
       if (this.tempForm.password.trim().length === 0) {
@@ -148,6 +143,15 @@ export default {
     },
     onClickLeft () {
       this.$router.replace('/login.html')
+    },
+    sexChange () {
+      if (this.tempForm.sex === '男') {
+        this.tempForm.headImg = '/assets/index/head-icon-man.png'
+      } else if (this.tempForm.sex === '女') {
+        this.tempForm.headImg = '/assets/index/head-icon-woman.png'
+      } else {
+        this.tempForm.headImg = '/assets/index/head-icon-default.png'
+      }
     }
   }
 }
@@ -173,25 +177,21 @@ export default {
     box-sizing: border-box;
   }
 
-  .sex-content {
-    height: 40px;
-    line-height: 40px;
-    padding-left: 0.4rem;
-    box-sizing: border-box;
-
+.sex-content {
+  height: 40px;
+  line-height: 40px;
+  padding-left: 0.4rem;
+  box-sizing: border-box;
   .van-radio {
     display: inline-block;
     width: 60px;
   }
-
-  &
-  :after {
+  &:after {
     content: '*';
     position: absolute;
     left: 0.55rem;
     font-size: 0.373333rem;
     color: #f44;
   }
-
-  }
+}
 </style>

@@ -120,14 +120,13 @@ export default {
   computed: {
     ...mapState({
       user: state => state.auth.user,
+      AuthorizationId: state => state.auth.AuthorizationId,
       photoWall: state => state.auth.photoWall
     })
   },
   created () {
     this.$store.commit('LOT_COMMON_SET_FOOTER_ACTIVE', 2)
-    if (this.user && this.user.tid) {
-      this.$store.dispatch('LOT_REFRESH_USER', {userId: this.user.tid})
-    }
+    this.$store.dispatch('LOT_REFRESH_USER', {userId: this.AuthorizationId})
   },
   methods: {
     callUpImg (event) {

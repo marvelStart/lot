@@ -30,6 +30,7 @@
 import { mapState } from 'vuex'
 import { login } from '@/api/user'
 import { Toast } from 'vant'
+import { setToken } from '@/utils/cookie'
 export default {
   name: 'lot-login',
   computed: {
@@ -51,10 +52,8 @@ export default {
         if (result.status === 200 && result.data && result.data.returnCode === '10000' && result.data.result) {
           // 登录成功
           Toast.success(result.data.msg)
-          if (result.data.result.userInfo) {
-            // this.$store.commit('LOT_AUTH_SET_USER', result.data.result.userInfo)
-            this.$store.commit('LOT_SET_TOKEN_ID', {AuthorizationId: 'AuthorizationId', Authorization: 'Authorization'})
-          }
+          this.$store.commit('LOT_SET_TOKEN_ID', {AuthorizationId: result.data.result.AuthorizationId, Authorization: result.data.result.Authorization})
+          setToken(result.data.result.Authorization, result.data.result.AuthorizationId)
           this.$router.push('/locations.html')
         } else {
           Toast.fail(result.data.msg)

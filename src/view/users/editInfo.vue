@@ -1,13 +1,14 @@
 <template>
   <article class="edit-body">
+    <lotLoading :showLoading="loading"></lotLoading>
     <lotHeader></lotHeader>
     <article class="edit-form">
       <!-- 头像 -->
       <van-row class="row-item">
-        <van-col :span="6" class="left-label">设置头像</van-col>
+        <van-col :span="6" class="left-label">头像</van-col>
         <van-col :span="18" class="right-content">
           <van-uploader :after-read="onRead">
-            <img :src="form.headImg" alt="">
+            <img :src="tempForm.headImg" alt="">
           </van-uploader>
         </van-col>
       </van-row>
@@ -15,39 +16,25 @@
       <van-row class="row-item">
         <van-col :span="6" class="left-label">昵称</van-col>
         <van-col :span="18" class="right-content">
-          <input type="text" v-model="form.nickName" placeholder="请输入昵称">
+          <input type="text" v-model="tempForm.realName" placeholder="请输入昵称">
         </van-col>
       </van-row>
       <!-- 出生日期 -->
-      <van-cell title="出生日期" is-link :value="form.birthDate" @click="showDate = true"/>
+      <van-cell title="生日" is-link :value="tempForm.birthDate" @click="showDate = true"/>
       <!-- 省市区 -->
-      <van-cell title="省市区" is-link :value="areaName" @click="showArea = true"/>
-      <!-- QQ -->
-      <van-row class="row-item">
-        <van-col :span="6" class="left-label">QQ</van-col>
-        <van-col :span="18" class="right-content">
-          <input type="number" v-model="form.QQ" placeholder="请输入QQ号">
-        </van-col>
-      </van-row>
-      <!-- 手机号 -->
-      <van-row class="row-item">
-        <van-col :span="6" class="left-label">微信</van-col>
-        <van-col :span="18" class="right-content">
-          <input type="text" v-model="form.weChat" placeholder="请输入微信号">
-        </van-col>
-      </van-row>
+      <van-cell title="地址" is-link :value="areaName" @click="showArea = true"/>
       <!-- 自我介绍 -->
       <van-row class="row-item">
-        <van-col :span="24" class="left-label">自我介绍</van-col>
+        <van-col :span="24" class="left-label">签名</van-col>
         <van-col :span="24" class="left-content">
-          <input type="textarea" v-model="form.describe" placeholder="介绍一下自己">
+          <input type="textarea" v-model="tempForm.signature" placeholder="个性签名">
         </van-col>
       </van-row>
       <section>
-        <van-button type="info">提交</van-button>
+        <van-button type="info" @click="editUserInfo">提交</van-button>
       </section>
     </article>
-    <lotDate :showMask="showDate" :date="form.birthDate" @callback="dateBack($event)"></lotDate>
+    <lotDate :showMask="showDate" :date="tempForm.birthDate" @callback="dateBack($event)"></lotDate>
     <lotAreas :showMask="showArea" :code="areaCode" @callback="areaBack($event)"></lotAreas>
   </article>
 </template>
@@ -56,35 +43,48 @@
 import lotDate from '@/components/lot-date'
 import lotHeader from '@/components/lot-header'
 import lotAreas from '@/components/lot-areas'
+import lotLoading from '@/components/lot-loading'
+import { editUserInfo } from '@/api/user'
+import { mapState } from 'vuex'
+import { Toast } from 'vant'
 export default {
   name: 'edit-user-info',
-  components: { lotHeader, lotDate, lotAreas },
+  components: { lotHeader, lotDate, lotAreas, lotLoading },
+  computed: {
+    ...mapState({
+      user: state => state.auth.user
+    })
+  },
   data () {
     return {
-      form: {
-        headImg: '/assets/pexels-photo-1362479.jpg',
-        nickName: '',
-        birthDate: '',
-        QQ: '',
-        weChat: '',
-        idCard: '',
-        describe: '',
-        address: ''
+      tempForm: {
+        updateType: 1, // 头像
+        headImg: '', // 头像
+        realName: '', // 昵称
+        birthDate: '', // 出生日期
+        signature: '', // 签名
+        address: '' // 地址
       },
       areaName: '',
       areaCode: '',
       showDate: false,
       showArea: false,
-      file: null
+      file: null,
+      loading: false
     }
   },
   created () {
     this.$store.commit('LOT_COMMON_SET_HEADER_TITLE', '编辑信息')
+    this.tempForm.headImg = this.user.headImg
+    this.tempForm.realName = this.user.realName
+    this.tempForm.birthDate = this.user.birthDate
+    this.tempForm.signature = this.user.signature
+    this.tempForm.address = this.user.address
   },
   methods: {
     // 时间选择器
     dateBack (event) {
-      this.form.birthDate = event
+      this.tempForm.birthDate = event
       this.showDate = false
     },
     // 设置省市区
@@ -92,14 +92,48 @@ export default {
       if (event && event.length === 3) {
         this.areaName = `${event[0].name}/${event[1].name}/${event[2].name}`
         this.areaCode = event[2].code
-        this.form.address = JSON.stringify({name: this.areaName, code: this.areaCode})
+        this.tempForm.address = JSON.stringify({name: this.areaName, code: this.areaCode})
       }
       this.showArea = false
     },
     // 上传回调
     onRead (event) {
       this.file = event.file
-      this.form.headImg = event.content
+      this.tempForm.headImg = event.content
+    },
+    editUserInfo () {
+      if (!this.verifyParams()) {
+        return false
+      }
+      editUserInfo(this.tempForm).then(result => {
+        if (result.status === 200 && result.data && result.data.returnCode === '10000') {
+          Toast.success('修改成功')
+          this.$router.push('/user.html')
+        }
+      })
+    },
+    verifyParams () {
+      if (this.tempForm.headImg === '/assets/index/head-icon-man.png' || this.tempForm.headImg === '/assets/index/head-icon-woman.png' || this.tempForm.headImg === '/assets/index/head-icon-default.png') {
+        Toast('请上传头像')
+        return false
+      }
+      if (this.tempForm.realName.trim() === '') {
+        Toast('请填写昵称')
+        return false
+      }
+      if (this.tempForm.birthDate.trim() === '') {
+        Toast('请设置生日')
+        return false
+      }
+      if (this.tempForm.address.trim() === '') {
+        Toast('请填写地址')
+        return false
+      }
+      if (this.tempForm.signature.trim() === '') {
+        Toast('请填写签名')
+        return false
+      }
+      return true
     }
   }
 }

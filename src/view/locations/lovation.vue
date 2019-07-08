@@ -37,7 +37,17 @@ export default {
   },
   data () {
     return {
-      notice: '恭喜“xxxx”用户中奖，请在个人中心-中奖记录中查看详细信息'
+      notice: '恭喜“xxxx”用户中奖，请在个人中心-中奖记录中查看详细信息',
+      center: {lng: 0, lat: 0}, // 经纬度
+      zoom: 3 // 地图展示级别
+    }
+  },
+  methods: {
+    locationSuccess ({point}) {
+      console.log(point)
+    },
+    locationError ({StatusCode}) {
+      console.log(StatusCode)
     }
   }
 }
@@ -62,5 +72,9 @@ export default {
       }
     }
   }
+}
+.map {
+  width: 100%;
+  height: 300px;
 }
 </style>

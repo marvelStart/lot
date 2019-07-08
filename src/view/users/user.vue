@@ -9,7 +9,7 @@
           </van-col>
           <van-col :span="14" :offset="2" class="user-info">
             <!-- 名称 -->
-            <p>{{user.nickName}}</p>
+            <p>{{user.realName}}</p>
             <!-- 等级 -->
             <p>游客</p>
             <p><router-link to="/edit.html"><van-icon name="setting-o"></van-icon><span>个人信息</span></router-link></p>

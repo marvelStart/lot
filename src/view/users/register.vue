@@ -1,5 +1,6 @@
 <template>
   <article>
+    <lotLoading :showLoading="loading"></lotLoading>
     <lotHeader></lotHeader>
     <article class="register-content">
       <section class="uploading-icon">
@@ -12,7 +13,7 @@
         type="text"
         label="昵称"
         placeholder="请输入昵称"
-        v-model="tempForm.nickName"
+        v-model="tempForm.realName"
         input-align="right"
         required
         maxlength="6"
@@ -58,15 +59,17 @@ import {iphone} from '@/utils/validator'
 import { uploadFile } from '@/api/common'
 import { Toast } from 'vant'
 import lotHeader from '@/components/lot-header'
+import lotLoading from '@/components/lot-loading'
 export default {
   name: 'lot-register',
-  components: {lotDate, lotHeader},
+  components: {lotDate, lotHeader, lotLoading},
   data () {
     return {
       showDate: false,
       file: null,
+      loading: null,
       tempForm: {
-        nickName: '',
+        realName: '',
         phone: '',
         birthDate: '',
         sex: '',
@@ -86,7 +89,9 @@ export default {
       if (!this.validator()) {
         return false
       }
+      this.loading = true
       register(this.tempForm).then(result => {
+        this.loading = false
         if (result.status === 200 && result.data && result.data.returnCode === '10000') {
           Toast.success('注册成功')
           this.$router.push('/login.html')
@@ -94,7 +99,8 @@ export default {
           Toast.fail(result.data.msg)
         }
       }).catch(error => {
-        console.log(error)
+        this.loading = false
+        Toast.fail(`erro: ${JSON.stringify(error)}`)
       })
     },
     // 时间选择器
@@ -109,7 +115,7 @@ export default {
     },
     // 校验数据
     validator () {
-      if (this.tempForm.nickName.trim().length === 0) {
+      if (this.tempForm.realName.trim().length === 0) {
         Toast.fail('请输入昵称')
         return false
       }

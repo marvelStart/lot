@@ -36,3 +36,15 @@ export const queryUser = (data) => {
     data: data
   })
 }
+
+/**
+ * 修改用户进本信息
+ * @param data
+ */
+export const editUserInfo = (data) => {
+  return request({
+    url: '/lot/webUser/updateUserInfo.do',
+    method: 'post',
+    data: data
+  })
+}

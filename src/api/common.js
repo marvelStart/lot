@@ -1,4 +1,4 @@
-import axios from 'axios'
+import request from '@/utils/request'
 
 /**
  * 文件上传
@@ -6,7 +6,7 @@ import axios from 'axios'
  * @returns {AxiosPromise}
  */
 export const uploadFile = (data) => {
-  return axios({
+  return request({
     url: '/lot/fileController/saveFile.do',
     method: 'post',
     data: data

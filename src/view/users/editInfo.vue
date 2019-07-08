@@ -45,6 +45,7 @@ import lotHeader from '@/components/lot-header'
 import lotAreas from '@/components/lot-areas'
 import lotLoading from '@/components/lot-loading'
 import { editUserInfo } from '@/api/user'
+import { uploadFile } from '@/api/common'
 import { mapState } from 'vuex'
 import { Toast } from 'vant'
 export default {
@@ -79,7 +80,13 @@ export default {
     this.tempForm.realName = this.user.realName
     this.tempForm.birthDate = this.user.birthDate
     this.tempForm.signature = this.user.signature
-    this.tempForm.address = this.user.address
+    if (this.user.address !== '' && this.user.address !== '{}') {
+      this.tempForm.address = this.user.address
+      let tempAddress = JSON.parse(this.user.address)
+      tempAddress.code = Number(tempAddress.code)
+      this.areaCode = tempAddress.code
+      this.areaName = tempAddress.name
+    }
   },
   methods: {
     // 时间选择器
@@ -98,8 +105,14 @@ export default {
     },
     // 上传回调
     onRead (event) {
-      this.file = event.file
-      this.tempForm.headImg = event.content
+      let _this = this
+      let temp = new FormData()
+      temp.append('file', event.file)
+      uploadFile(temp).then(result => {
+        if (result.status === 200 && result.data && result.data.returnCode === '10000' && result.data.result) {
+          _this.tempForm.headImg = result.data.result.urls
+        }
+      })
     },
     editUserInfo () {
       if (!this.verifyParams()) {

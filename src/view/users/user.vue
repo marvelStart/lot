@@ -114,6 +114,8 @@
 import lotFooter from '@/components/lot-footer'
 import { ImagePreview } from 'vant'
 import { mapState } from 'vuex'
+import { uploadFile } from '@/api/common'
+import { editUserInfo } from '@/api/user'
 export default {
   name: 'lot-user',
   components: { lotFooter },
@@ -130,7 +132,23 @@ export default {
   },
   methods: {
     callUpImg (event) {
-      console.log(event)
+      let temp = new FormData()
+      temp.append('file', event.file)
+      uploadFile(temp).then(result => {
+        if (result.status === 200 && result.data && result.data.returnCode === '10000' && result.data.result) {
+          let tempList = JSON.parse(JSON.stringify(this.photoWall))
+          tempList.push(result.data.result.urls)
+          let params = {
+            updateType: 2,
+            photos: tempList.join(',')
+          }
+          editUserInfo(params).then(result => {
+            if (result.status === 200 && result.data && result.data.returnCode === '10000') {
+              this.$store.dispatch('LOT_REFRESH_USER', {userId: this.AuthorizationId})
+            }
+          })
+        }
+      })
     },
     reView (url) {
       ImagePreview([url])

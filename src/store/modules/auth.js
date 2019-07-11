@@ -29,6 +29,7 @@ const actions = {
     queryUser(params).then(result => {
       if (result.status === 200 && result.data && result.data.returnCode === '10000') {
         commit('LOT_AUTH_SET_USER', result.data.result.userInfo)
+        commit('LOT_USER_PHOTO_WALL', result.data.result.userInfo)
       } else {
         Toast.fail('用户信息刷新失败')
       }
@@ -44,8 +45,8 @@ const mutations = {
     state.user = user
   },
   // 设置照片墙
-  LOT_USER_PHOTO_WALL (state, photo) {
-    state.photoWall = photo
+  LOT_USER_PHOTO_WALL (state, user) {
+    state.photoWall = user.photos.split(',')
   },
   // 设置 token、Id
   LOT_SET_TOKEN_ID (state, user) {

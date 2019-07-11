@@ -19,7 +19,10 @@
       <!-- 照片墙 -->
       <section class="user-imgs">
         <van-row gutter="5">
-          <van-col :span="6" v-for="(item, index) of photoWall" :key="index"><img :src="item" @click="reView(item)" alt=""></van-col>
+          <van-col :span="6" v-for="(item, index) of photoWall" :key="index">
+            <img :src="item" @click="reView(item)" alt="">
+            <!--<van-icon name="close" class="remove-icon"></van-icon>-->
+          </van-col>
           <van-col :span="6">
             <van-uploader :after-read="callUpImg" class="up-user-photograph">
               <van-icon name="photograph" />

@@ -31,6 +31,7 @@ import { mapState } from 'vuex'
 import { login } from '@/api/user'
 import { Toast } from 'vant'
 import { setToken } from '@/utils/cookie'
+import Cookies from 'js-cookie'
 export default {
   name: 'lot-login',
   computed: {
@@ -42,7 +43,9 @@ export default {
     return {
       formData: {
         accountNum: '',
-        password: ''
+        password: '',
+        longitude: Cookies.get('pointX') || '',
+        latitude: Cookies.get('pointY') || ''
       }
     }
   },

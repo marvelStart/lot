@@ -48,3 +48,17 @@ export const editUserInfo = (data) => {
     data: data
   })
 }
+
+/**
+ * 查询是否是会员
+ * @param uid
+ */
+export const isVip = (uid) => {
+  return request({
+    url: '/lot/webMember/queryMemberByUser.do',
+    method: 'post',
+    params: {
+      uid: uid
+    }
+  })
+}

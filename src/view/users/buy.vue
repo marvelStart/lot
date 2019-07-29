@@ -172,9 +172,16 @@
 
 <script>
 import lotHeader from '@/components/lot-header'
+import { queryVipPrice } from '@/api/money'
+import { mapState } from 'vuex'
 export default {
   name: 'lot-buy',
   components: { lotHeader },
+  computed: {
+    ...mapState({
+      Id: state => state.auth.AuthorizationId
+    })
+  },
   data () {
     return {
       type: '',
@@ -194,6 +201,9 @@ export default {
       switch (this.type) {
         case 'vip':
           this.$store.commit('LOT_COMMON_SET_HEADER_TITLE', '会员充值')
+          queryVipPrice().then(result => {
+            console.log(result)
+          })
           break
         case 'gold':
           this.$store.commit('LOT_COMMON_SET_HEADER_TITLE', '金币充值')

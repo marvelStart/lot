@@ -118,7 +118,7 @@ import lotFooter from '@/components/lot-footer'
 import { ImagePreview } from 'vant'
 import { mapState } from 'vuex'
 import { uploadFile } from '@/api/common'
-import { editUserInfo } from '@/api/user'
+import { editUserInfo, isVip } from '@/api/user'
 export default {
   name: 'lot-user',
   components: { lotFooter },
@@ -126,12 +126,14 @@ export default {
     ...mapState({
       user: state => state.auth.user,
       AuthorizationId: state => state.auth.AuthorizationId,
-      photoWall: state => state.auth.photoWall
+      photoWall: state => state.auth.photoWall,
+      Id: state => state.auth.AuthorizationId
     })
   },
   created () {
     this.$store.commit('LOT_COMMON_SET_FOOTER_ACTIVE', 2)
     this.$store.dispatch('LOT_REFRESH_USER', {userId: this.AuthorizationId})
+    this.queryIsVip()
   },
   methods: {
     callUpImg (event) {
@@ -155,6 +157,11 @@ export default {
     },
     reView (url) {
       ImagePreview([url])
+    },
+    queryIsVip () {
+      isVip(this.Id).then(result => {
+        console.log(result)
+      })
     }
   }
 }

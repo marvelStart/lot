@@ -29,11 +29,14 @@
 
 <script>
 import lotFooter from '@/components/lot-footer'
+import { queryNearby } from '@/api/nearby'
+import Cookies from 'js-cookie'
 export default {
   name: 'lot-location',
   components: { lotFooter },
   created () {
     this.$store.commit('LOT_COMMON_SET_FOOTER_ACTIVE', 0)
+    this.getDate()
   },
   data () {
     return {
@@ -48,6 +51,13 @@ export default {
     },
     locationError ({StatusCode}) {
       console.log(StatusCode)
+    },
+    getDate () {
+      let x = Cookies.get('pointX') || ''
+      let y = Cookies.get('pointY') || ''
+      queryNearby(x, y).then(result => {
+        console.log(result)
+      })
     }
   }
 }

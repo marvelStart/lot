@@ -57,7 +57,7 @@ export const isVip = (uid) => {
   return request({
     url: '/lot/webMember/queryMemberByUser.do',
     method: 'post',
-    params: {
+    data: {
       uid: uid
     }
   })
